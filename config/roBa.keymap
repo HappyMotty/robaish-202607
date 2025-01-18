@@ -75,11 +75,11 @@
             tapping-term-ms = <200>;
         };
 
-        new_behavior: new_behavior {
+        scroll_up_down: scroll_up_down {
             compatible = "zmk,behavior-sensor-rotate-var";
-            label = "NEW_BEHAVIOR";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
+            label = "scroll_up_down";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
 
             tap-ms = <20>;
         };
