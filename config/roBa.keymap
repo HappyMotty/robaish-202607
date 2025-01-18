@@ -77,7 +77,7 @@
 
         scroll_up_down: scroll_up_down {
             compatible = "zmk,behavior-sensor-rotate-var";
-            label = "scroll_up_down";
+            label = "SCROLL_UP_DOWN";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
 
