@@ -96,7 +96,7 @@
 &kp TAB           &kp LEFT_ALT  &kp LWIN  &kp ESCAPE  &lt 3 SPACE  &lt_to_layer_0 2 BACKSPACE      &kp RIGHT_WIN  &lt 1 ENTER                             &kp RIGHT_ALT
             >;
 
-            sensor-bindings = <&scroll_up_down SCRL_UP SCRL_DOWN>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         FUNCTION {
