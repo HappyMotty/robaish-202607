@@ -4,6 +4,10 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/pointing.h>
 
+#define MOUSE 4
+#define SCROLL 4
+#define NUM 6
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
