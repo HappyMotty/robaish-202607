@@ -82,6 +82,8 @@
             label = "SCROLL_UP_DOWN";
             #sensor-binding-cells = <2>;
             bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+
+            tap-ms = <20>;
         };
     };
 
