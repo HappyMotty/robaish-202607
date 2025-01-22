@@ -81,7 +81,7 @@
             compatible = "zmk,behavior-sensor-rotate-var";
             label = "SCROLL_UP_DOWN";
             #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
         };
     };
 
@@ -96,7 +96,7 @@
 &kp TAB           &kp LEFT_ALT  &kp LWIN  &kp ESCAPE  &lt 3 SPACE  &lt 2 BACKSPACE      &kp RIGHT_WIN  &lt 1 ENTER                             &kp RIGHT_ALT
             >;
 
-            sensor-bindings = <&scroll_up_down SCRL_UP SCRL_DOWN>;
+            sensor-bindings = <&scroll_up_downj>;
         };
 
         FUNCTION {
