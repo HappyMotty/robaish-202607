@@ -94,7 +94,7 @@
             bindings = <
 &lt 4 Q           &kp W         &kp E     &kp R       &kp T                                            &kp Y        &kp U  &kp I      &kp O    &kp P
 &mt LCTRL A       &kp S         &kp D     &kp F       &kp G        &kp LS(LG(S))        &kp MINUS      &kp H        &kp J  &kp K      &kp L    &mt RCTRL SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C     &kp V       &kp B        &tog 2               &kp EQUAL      &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&mt LEFT_SHIFT Z  &kp X         &kp C     &kp V       &kp B        &to 2                &kp EQUAL      &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
 &kp TAB           &kp LEFT_ALT  &kp LWIN  &kp ESCAPE  &lt 3 SPACE  &lt 2 BACKSPACE      &kp RIGHT_WIN  &lt 1 ENTER                             &kp RIGHT_ALT
             >;
 
@@ -104,7 +104,7 @@
         FUNCTION {
             bindings = <
 &kp MINUS  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp PLUS                              &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
-&kp SLASH  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTERISK  &tog 0         &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
+&kp SLASH  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp ASTERISK  &to 0          &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
 &kp N0     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp PERIOD    &kp EQUAL      &trans   &trans  &trans  &trans  &trans  &kp F11
 &trans     &trans        &trans        &trans        &trans        &trans         &trans   &trans                          &kp F12
             >;
@@ -113,8 +113,8 @@
         NUM {
             bindings = <
 &kp EXCLAMATION  &kp AT_SIGN      &kp HASH          &kp DOLLAR       &kp PERCENT                                         &kp CARET  &kp AMPERSAND  &kp TILDE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp LCTRL        &kp LESS_THAN    &kp GREATER_THAN  &kp PLUS         &kp ASTERISK  &trans      &kp UNDERSCORE            &kp MINUS  &kp EQUAL      &kp HASH   &kp LBKT              &kp RBKT
-&kp LEFT_SHIFT   &kp KP_NUMBER_1  &kp KP_NUMBER_2   &kp KP_NUMBER_3  &kp PERIOD    &tog 0      &kp LS(NON_US_BACKSLASH)  &kp TILDE  &kp GRAVE      &kp SQT    &kp LEFT_BRACE        &kp RIGHT_BRACE
+&kp LCTRL        &kp LESS_THAN    &kp GREATER_THAN  &kp PLUS         &kp ASTERISK  &trans      &kp UNDERSCORE            &kp EQUAL  &kp MINUS      &kp HASH   &kp LBKT              &kp RBKT
+&kp LEFT_SHIFT   &kp KP_NUMBER_1  &kp KP_NUMBER_2   &kp KP_NUMBER_3  &kp PERIOD    &to 0       &kp LS(NON_US_BACKSLASH)  &kp TILDE  &kp GRAVE      &kp SQT    &kp LEFT_BRACE        &kp RIGHT_BRACE
 &trans           &trans           &trans            &trans           &trans        &trans      &trans                    &trans                                                     &kp PIPE
             >;
         };
