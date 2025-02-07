@@ -112,16 +112,16 @@
 
         NUM {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN      &kp HASH          &kp DOLLAR       &kp PERCENT                                         &kp CARET  &kp AMPERSAND  &kp TILDE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp LCTRL        &kp LESS_THAN    &kp GREATER_THAN  &kp PLUS         &kp ASTERISK  &trans      &kp UNDERSCORE            &kp EQUAL  &kp MINUS      &kp HASH   &kp LBKT              &kp RBKT
-&kp LEFT_SHIFT   &kp KP_NUMBER_1  &kp KP_NUMBER_2   &kp KP_NUMBER_3  &kp PERIOD    &to 0       &kp LS(NON_US_BACKSLASH)  &kp TILDE  &kp GRAVE      &kp SQT    &kp LEFT_BRACE        &kp RIGHT_BRACE
-&trans           &trans           &trans            &trans           &trans        &trans      &trans                    &trans                                                     &kp PIPE
+&kp EXCLAMATION  &kp AT_SIGN      &kp HASH          &kp DOLLAR  &kp PERCENT                               &kp CARET  &kp AMPERSAND  &kp TILDE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&kp LCTRL        &kp LESS_THAN    &kp GREATER_THAN  &kp PLUS    &kp ASTERISK  &trans      &kp UNDERSCORE  &kp EQUAL  &kp MINUS      &kp HASH   &kp LBKT              &kp RBKT
+&kp LEFT_SHIFT   &kp KP_NUMBER_1  &kp KP_NUMBER_2   &kp BSLH    &kp PIPE      &to 0       &kp PIPE        &kp TILDE  &kp GRAVE      &kp SQT    &kp LEFT_BRACE        &kp RIGHT_BRACE
+&trans           &trans           &trans            &trans      &trans        &trans      &trans          &trans                                                     &kp PIPE
             >;
         };
 
         ARROW {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp LG(LS(NUMBER_4))  &kp LC(TAB)              &kp LG(LS(N5))                      &trans  &trans    &trans          &trans     &trans
+&kp ESCAPE      &kp LC(LS(TAB))         &kp LG(LS(NUMBER_4))  &kp LC(TAB)              &kp LG(LS(N5))                      &trans  &trans    &mkp MB3        &trans     &trans
 &kp HOME        &kp LEFT_ARROW          &kp UP_ARROW          &kp RIGHT_ARROW          &kp END         &trans      &trans  &trans  &mkp MB1  &kp UP_ARROW    &mkp MB2   &trans
 &kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &kp DOWN              &kp LG(LS(RIGHT_ARROW))  &trans          &trans      &trans  &trans  &kp LEFT  &kp DOWN_ARROW  &kp RIGHT  &trans
 &trans          &trans                  &trans                &trans                   &trans          &trans      &trans  &trans                                       &trans
