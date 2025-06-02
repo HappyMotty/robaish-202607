@@ -26,9 +26,9 @@
 
         FUNCTION {
             bindings = <
-&none                 &kp F2            &kp F3            &kp F4            &kp LBKT                                        &kp F6         &kp F7      &kp F8         &kp F9     &kp F10
+&none                 &kp F2            &kp F3            &kp F4            &kp RBKT                                        &kp F6         &kp F7      &kp F8         &kp F9     &kp F10
 &kp F5                &kp LS(NUMBER_4)  &kp LS(N5)        &kp LS(NUMBER_6)  &kp LS(NUMBER_8)  &none      &kp SQT            &kp LS(MINUS)  &mkp LCLK   &kp PAGE_UP    &mkp RCLK  &kp COLON
-&kp LS(N7)            &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LBRC          &none      &kp SEMICOLON      &kp SQT        &kp DOLLAR  &kp PAGE_DOWN  &kp F12    &kp F11
+&kp LS(N7)            &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp RBRC          &kp LBKT   &kp SEMICOLON      &kp SQT        &kp DOLLAR  &kp PAGE_DOWN  &kp F12    &kp F11
 &kp NON_US_BACKSLASH  &none             &none             &kp LEFT_SHIFT    &none             &none      &kp BACKSPACE      &kp LEFT_ALT                                         &kp RCTRL
             >;
 
@@ -37,9 +37,9 @@
 
         NUM {
             bindings = <
-&kp MINUS        &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp KP_MINUS                                     &kp RBKT          &kp INT_KANA  &kp INT5      &kp HOME       &kp END
-&kp KP_ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6    &kp KP_PLUS   &none             &kp SQT          &kp LS(NUMBER_9)  &kp PAGE_UP   &kp UP_ARROW  &kp PAGE_DOWN  &kp COLON
-&kp KP_DIVIDE    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp KP_EQUAL  &none             &kp SEMICOLON    &kp RBRC          &kp LEFT      &kp DOWN      &kp RIGHT      &kp LEFT_WIN
+&kp MINUS        &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp KP_MINUS                                     &kp AT              &kp INT_KANA  &kp INT5      &kp HOME       &kp END
+&kp KP_ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6    &kp KP_PLUS   &none             &kp SQT          &kp LS(NUMBER_9)    &kp PAGE_UP   &kp UP_ARROW  &kp PAGE_DOWN  &kp COLON
+&kp KP_DIVIDE    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp KP_EQUAL  &kp LBKT          &kp SEMICOLON    &kp LS(AT)          &kp LEFT      &kp DOWN      &kp RIGHT      &kp LEFT_WIN
 &kp ESCAPE       &kp N0        &kp DOT       &kp LEFT_SHIFT  &none         &kp LEFT_ALT      &none            &none                                                        &kp RCTRL
             >;
 
