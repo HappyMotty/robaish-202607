@@ -37,10 +37,10 @@
 
         NUM {
             bindings = <
-&kp MINUS     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp MINUS                                      &kp RIGHT_BRACKET      &kp INT_KANA  &kp INT5      &kp HOME       &kp END
-&kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6    &kp PLUS   &none                 &kp LS(SEMI)  &kp LS(NUMBER_0)       &kp PAGE_UP   &kp UP_ARROW  &kp PAGE_DOWN  &kp COLON
-&kp SLASH     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp EQUAL  &kp LS(NUMBER_2)      &kp SEMI      &kp LS(RIGHT_BRACKET)  &kp LEFT      &kp DOWN      &kp RIGHT      &kp LEFT_WIN
-&kp ESCAPE    &kp N0        &kp DOT       &kp LEFT_SHIFT  &none      &kp LEFT_ALT          &none         &none                                                             &kp RCTRL
+&kp MINUS     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp MINUS                                      &kp RIGHT_BRACKET      &kp LANGUAGE_5  &kp LANGUAGE_5  &kp HOME       &kp END
+&kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6    &kp PLUS   &none                 &kp LS(SEMI)  &kp LS(NUMBER_0)       &kp PAGE_UP     &kp UP_ARROW    &kp PAGE_DOWN  &kp COLON
+&kp SLASH     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp EQUAL  &kp LS(NUMBER_2)      &kp SEMI      &kp LS(RIGHT_BRACKET)  &kp LEFT        &kp DOWN        &kp RIGHT      &kp LEFT_WIN
+&kp ESCAPE    &kp N0        &kp DOT       &kp LEFT_SHIFT  &none      &kp LEFT_ALT          &none         &none                                                                 &kp RCTRL
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
