@@ -39,11 +39,6 @@
             key-positions = <12 13>;
         };
 
-        muhennkann {
-            bindings = <&to_layer_0 LS(CAPSLOCK)>;
-            key-positions = <11 10>;
-        };
-
         double_quotation {
             bindings = <&kp DOUBLE_QUOTES>;
             key-positions = <20 21>;
@@ -77,6 +72,21 @@
         RightKakko {
             bindings = <&kp RIGHT_PARENTHESIS>;
             key-positions = <30 31>;
+        };
+
+        BackSlash {
+            bindings = <&kp BACKSLASH>;
+            key-positions = <33 32>;
+        };
+
+        KagiKakkoH {
+            bindings = <&kp LEFT_BRACKET>;
+            key-positions = <17 18>;
+        };
+
+        KagiKakkoT {
+            bindings = <&kp RIGHT_BRACKET>;
+            key-positions = <18 19>;
         };
     };
 
@@ -127,7 +137,7 @@
             bindings = <
 &kp ESCAPE        &kp LS(LC(TAB))  &kp UP_ARROW    &kp LC(TAB)      &kp LA(F4)                                      &kp CARET             &kp AT_SIGN            &kp TILDE       &kp AMPERSAND    &kp PERCENT
 &kp TAB           &kp LEFT_ARROW   &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(RIGHT)  &kp C_PLAY_PAUSE      &kp GRAVE  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp HASH        &kp DOLLAR       &kp EXCLAMATION
-&kp LEFT_SHIFT    &kp HOME         &kp LG(TAB)     &kp END          &kp LA(LEFT)   &kp C_MUTE            &kp PLUS   &kp LEFT_BRACKET      &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp BACKSLASH
+&kp LEFT_SHIFT    &kp HOME         &kp LG(TAB)     &kp END          &kp LA(LEFT)   &kp C_MUTE            &kp PLUS   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp BACKSLASH
 &kp LEFT_CONTROL  &kp LEFT_WIN     &kp LA(TAB)     &trans           &trans         &trans                &trans     &trans                                                                        &kp PIPE
             >;
 
