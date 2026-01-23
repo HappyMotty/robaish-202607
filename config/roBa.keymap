@@ -39,7 +39,7 @@
             bindings = <
 &kp MINUS        &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp KP_MINUS                                     &kp RBKT          &kp INT_KANA  &kp INT5      &kp HOME       &kp END
 &kp KP_ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6    &kp KP_PLUS   &none             &kp SQT          &kp LS(NUMBER_9)  &kp PAGE_UP   &kp UP_ARROW  &kp PAGE_DOWN  &kp COLON
-&kp KP_DIVIDE    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp KP_EQUAL  &none             &kp SEMICOLON    &kp RBRC          &kp LEFT      &kp DOWN      &kp RIGHT      &kp LEFT_WIN
+&kp KP_DIVIDE    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp LS(MINUS)  &none             &kp SEMICOLON    &kp RBRC          &kp LEFT      &kp DOWN      &kp RIGHT      &kp LEFT_WIN
 &kp ESCAPE       &kp N0        &kp DOT       &kp LEFT_SHIFT  &none         &kp LEFT_ALT      &none            &none                                                        &kp RCTRL
             >;
 
