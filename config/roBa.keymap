@@ -11,22 +11,8 @@
     quick-tap-ms = <0>;
 };
 
-&trackball {
-    //automouse-layer = <8>;
-    scroll-layers = <9>;
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
-};
+// scroll-layers and automouse-layer are now handled by
+// zmk,input-listener with input-processors in roBa_R.overlay
 
 / {
     combos {
