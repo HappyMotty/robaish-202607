@@ -3,16 +3,12 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// #includeのあとのあたりにスクロール量変更の定義を追記 def 80
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 80
 
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
 };
-
-// scroll-layers and automouse-layer are now handled by
-// zmk,input-listener with input-processors in roBa_R.overlay
 
 / {
     combos {
@@ -28,7 +24,7 @@
             key-positions = <12 13>;
         };
 
-        muhennkann {
+        muhenkan {
             bindings = <&to_layer_0 INT_MUHENKAN>;
             key-positions = <11 10>;
         };
@@ -52,11 +48,11 @@
             label = "TO_LAYER_0";
         };
 
-        layer_4_bt1: new_macro {
+        layer_4_bt1: layer_4_bt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&to 4 &bt BT_SEL 1>;
-            label = "NEW_MACRO";
+            label = "LAYER_4_BT1";
         };
 
         layer_4_bt2: layer_4_bt2 {
@@ -76,9 +72,6 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
-
-        // combosやmacrosと同じ階層に以下のbihaviorsを追記
-        // スクロール方向を逆にしたい場合は <&msc SCRL_DOWN> と <&msc SCRL_UP> を入れ替えてください
 
         encoder_msc_down_up: encoder_msc_down_up {
             compatible = "zmk,behavior-sensor-rotate";
