@@ -137,7 +137,7 @@
         };
 
         tolayer8 {
-            bindings = <&to 11>;
+            bindings = <&to 10>;
             key-positions = <8 40>;
         };
 
@@ -411,19 +411,10 @@
             >;
         };
 
-        JPCommand {
-            bindings = <
-&kp SINGLE_QUOTE  &kp DQT   &kp EXCL   &kp LS(TAB)        &kp TAB                                      &kp LA(Y)          &trans        &trans  &trans        &kp PRCNT
-&kp AT            &kp SEMI  &kp DLLR   &kp SINGLE_QUOTE   &kp LA(TAB)    &trans           &none        &kp HASH           &kp LG(LBKT)  &trans  &kp LG(RBKT)  &kp LA(BACKSPACE)
-&kp LS(LG(Z))     &trans    &kp COLON  &trans             &kp BACKSLASH  &trans           &bootloader  &kp LS(AMPERSAND)  &trans        &trans  &trans        &bt BT_CLR
-&trans            &trans    &trans     &doublequotations  &brakets2      &JPBrackets      &trans       &trans                                                 &trans
-            >;
-        };
-
         layer_8 {
             bindings = <
 &kp Q   &kp F   &kp R   &kp W   &kp L                          &kp J    &kp G  &kp U      &kp Y    &kp BACKSPACE
-&kp A   &kp H   &kp N   &kp S   &kp M   &kp H       &kp H      &kp K    &kp T  &kp E      &kp I    &arrowlayer 14 O
+&kp A   &kp H   &kp N   &kp S   &kp M   &kp H       &kp H      &kp K    &kp T  &kp E      &kp I    &arrowlayer 13 O
 &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N       &kp SEMI   &kp P    &kp D  &kp COMMA  &kp DOT  &kp FSLH
 &trans  &trans  &trans  &trans  &trans  &trans      &kp SPACE  &kp RET                             &kp RSHFT
             >;
