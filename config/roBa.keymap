@@ -241,41 +241,6 @@
             label = "ADV4ANDTOL7";
         };
 
-        of: of {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp O &kp F>;
-            label = "OF";
-        };
-
-        for: for {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp F &kp O &kp R>;
-            label = "FOR";
-        };
-
-        from: from {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp F &kp R &kp O &kp M>;
-            label = "FROM";
-        };
-
-        fl: fl {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp F &kp L>;
-            label = "FL";
-        };
-
-        ou: ou {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp O &kp U>;
-            label = "OU";
-        };
-
         JP: JP {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
