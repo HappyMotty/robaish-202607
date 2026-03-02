@@ -402,7 +402,7 @@
             >;
         };
 
-        layer_6 {
+        SYMBOL {
             bindings = <
 &kp SINGLE_QUOTE  &kp DQT   &kp EXCL   &kp LS(TAB)        &kp TAB                                      &kp LA(Y)          &trans        &trans  &trans        &kp PRCNT
 &kp AT            &kp SEMI  &kp DLLR   &kp SINGLE_QUOTE   &kp LA(TAB)    &trans           &none        &kp HASH           &kp LG(LBKT)  &trans  &kp LG(RBKT)  &kp LA(BACKSPACE)
