@@ -145,24 +145,6 @@
             bindings = <&to 0>;
             key-positions = <40 9>;
         };
-
-        of {
-            bindings = <&of>;
-            key-positions = <2 21>;
-            timeout-ms = <40>;
-        };
-
-        fl {
-            bindings = <&fl>;
-            key-positions = <2 6>;
-            timeout-ms = <40>;
-        };
-
-        ou {
-            bindings = <&ou>;
-            key-positions = <6 7>;
-            timeout-ms = <40>;
-        };
     };
 
     macros {
