@@ -310,6 +310,26 @@
             tapping-term-ms = <230>;
             flavor = "hold-preferred";
         };
+
+        JpLayer: JpLayer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "JPLAYER";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <230>;
+            flavor = "hold-preferred";
+        };
+
+        En_Layer: En_Layer {
+            compatible = "zmk,behavior-hold-tap";
+            label = "EN_LAYER";
+            bindings = <&mo>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <230>;
+            flavor = "hold-preferred";
+        };
     };
 
     keymap {
