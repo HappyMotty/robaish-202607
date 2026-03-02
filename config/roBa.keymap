@@ -351,10 +351,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W             &kp F         &kp P                        &kp B                                               &kp J        &kp L  &kp U      &kp Y       &lt 7 BACKSPACE
-&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 7 O
+&kp Q             &kp W             &kp F         &kp P                        &kp B                                               &kp J        &kp L  &kp U      &kp Y       &lt 4 BACKSPACE
+&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 4 O
 &mt LEFT_SHIFT Z  &lt 6 X           &kp C         &kp D                        &kp V             &kp COLON          &kp SEMICOLON  &kp K        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 9 BACKSPACE  &mt LSHIFT SPACE  &En_Layer 2 0      &JpLayer 9 0   &lt 8 ENTER                                &mo 5
+&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 9 BACKSPACE  &mt LSHIFT SPACE  &En_Layer 2 0      &JpLayer 9 0   &lt 7 ENTER                                &mo 5
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -362,10 +362,10 @@
 
         JPLAYER {
             bindings = <
-&kp Q             &kp W             &kp K         &kp P                        &kp B                                               &kp J        &kp Y  &kp U      &kp L       &lt 7 BACKSPACE
-&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 7 O
+&kp Q             &kp W             &kp K         &kp P                        &kp B                                               &kp J        &kp Y  &kp U      &kp L       &lt 4 BACKSPACE
+&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 4 O
 &mt LEFT_SHIFT Z  &lt 6 X           &kp C         &kp D                        &kp V             &kp COLON          &kp SEMICOLON  &kp F        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 9 BACKSPACE  &mt LSHIFT SPACE  &En_Layer 2 0      &JpLayer 9 0   &lt 8 ENTER                                &mo 5
+&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 9 BACKSPACE  &mt LSHIFT SPACE  &En_Layer 2 0      &JpLayer 9 0   &lt 4 ENTER                                &mo 5
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
