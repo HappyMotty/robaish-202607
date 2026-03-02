@@ -19,11 +19,11 @@
 };
 
 &trackball {
-    automouse-layer = <4>;
-    scroll-layers = <8>;
+    automouse-layer = <6>;
+    scroll-layers = <9>;
 
     arrows {
-        layers = <10>;
+        layers = <12>;
         bindings =
             <&kp RIGHT_ARROW>,
             <&kp LEFT_ARROW>,
