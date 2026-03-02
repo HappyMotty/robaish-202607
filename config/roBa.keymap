@@ -373,10 +373,10 @@
 
         Command {
             bindings = <
-&kp LG(Q)         &kp LG(W)             &kp LG(F)         &kp LG(P)                        &kp LG(B)                                               &kp LG(J)        &kp LG(L)  &kp LG(U)      &kp LG(Y)       &lt 4 LG(BACKSPACE)
-&kp LG(A)         &kp LG(R)             &kp LG(S)         &kp LG(T)                        &kp LG(G)             &kp LS(LG(S))      &kp MINUS      &kp LG(M)        &kp LG(N)  &kp LG(E)      &kp LG(I)       &arrowlayer 4 LG(O)
-&mt LEFT_SHIFT Z  &lt 6 X               &kp LG(C)         &kp LG(D)                        &kp LG(V)             &kp COLON          &kp SEMICOLON  &kp LG(K)        &kp LG(H)  &kp LG(COMMA)  &kp LG(PERIOD)  &mt LEFT_SHIFT LG(SLASH)
-&kp LG(LCTRL)     &kp LG(LEFT_CONTROL)  &kp LG(LEFT_ALT)  &hold_preferred 9 LG(BACKSPACE)  &mt LSHIFT LG(SPACE)  &trans             &JpLayer 9 0   &lt 7 LG(ENTER)                                            &mo 5
+&kp LG(Q)             &kp LG(W)             &kp LG(F)         &kp LG(P)                        &kp LG(B)                                               &kp LG(J)        &kp LG(L)  &kp LG(U)      &kp LG(Y)       &lt 4 LG(BACKSPACE)
+&kp LG(A)             &kp LG(R)             &kp LG(S)         &kp LG(T)                        &kp LG(G)             &kp LS(LG(S))      &kp MINUS      &kp LG(M)        &kp LG(N)  &kp LG(E)      &kp LG(I)       &arrowlayer 4 LG(O)
+&mt LEFT_SHIFT LG(Z)  &lt 6 X               &kp LG(C)         &kp LG(D)                        &kp LG(V)             &kp COLON          &kp SEMICOLON  &kp LG(K)        &kp LG(H)  &kp LG(COMMA)  &kp LG(PERIOD)  &mt LEFT_SHIFT LG(SLASH)
+&kp LG(LCTRL)         &kp LG(LEFT_CONTROL)  &kp LG(LEFT_ALT)  &hold_preferred 9 LG(BACKSPACE)  &mt LSHIFT LG(SPACE)  &trans             &JpLayer 9 0   &lt 7 LG(ENTER)                                            &mo 5
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
