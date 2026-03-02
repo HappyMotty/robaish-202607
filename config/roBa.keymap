@@ -155,10 +155,10 @@
             label = "TO_LAYER_0";
         };
 
-        brackets: brackets {
+        ENbrackets: brackets {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LANGUAGE_2 &kp LPAR &kp RPAR &kp LC(B)>;
+            bindings = <&kp LPAR &kp RPAR &kp LC(B)>;
             label = "BRACKETS";
         };
 
@@ -270,6 +270,13 @@
             #binding-cells = <0>;
             bindings = <&to 0 &kp LANG2>;
             label = "EN";
+        };
+
+        JPBrackets: JPBrackets {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR &kp RPAR &kp RETURN &kp LC(B)>;
+            label = "JPBRACKETS";
         };
     };
 
@@ -385,10 +392,10 @@
 
         ARROW {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &trans             &kp LC(TAB)  &trans                         &kp C_BRI_DN     &kp LG(EQUAL)   &kp UP_ARROW    &kp LG(MINUS)    &kp C_BRI_INC
-&kp HOME        &trans                  &trans             &kp LBKT     &kp RBKT   &trans      &trans  &kp LG(H)        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(BACKSPACE)
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &doublequotations  &brakets2    &brackets  &trans      &trans  &kp C_VOLUME_UP  &kp K_MUTE      &kp C_VOL_DN    &trans           &kp F2
-&trans          &trans                  &trans             &trans       &trans     &trans      &trans  &kp LCTRL                                                         &trans
+&kp ESCAPE      &kp LC(LS(TAB))         &trans             &kp LC(TAB)  &trans                           &kp C_BRI_DN     &kp LG(EQUAL)   &kp UP_ARROW    &kp LG(MINUS)    &kp C_BRI_INC
+&kp HOME        &trans                  &trans             &kp LBKT     &kp RBKT     &trans      &trans  &kp LG(H)        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(BACKSPACE)
+&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &doublequotations  &brakets2    &ENbrackets  &trans      &trans  &kp C_VOLUME_UP  &kp K_MUTE      &kp C_VOL_DN    &trans           &kp F2
+&trans          &trans                  &trans             &trans       &trans       &trans      &trans  &kp LCTRL                                                         &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -432,10 +439,10 @@
 
         layer_6 {
             bindings = <
-&kp SINGLE_QUOTE  &kp DQT   &kp EXCL   &kp LS(TAB)        &kp TAB                                    &kp LA(Y)          &trans        &trans  &trans        &kp PRCNT
-&kp AT            &kp SEMI  &kp DLLR   &kp SINGLE_QUOTE   &kp LA(TAB)    &trans         &none        &kp HASH           &kp LG(LBKT)  &trans  &kp LG(RBKT)  &kp LA(BACKSPACE)
-&kp LS(LG(Z))     &trans    &kp COLON  &trans             &kp BACKSLASH  &trans         &bootloader  &kp LS(AMPERSAND)  &trans        &trans  &trans        &bt BT_CLR
-&trans            &trans    &trans     &doublequotations  &brakets2      &brackets      &trans       &trans                                                 &trans
+&kp SINGLE_QUOTE  &kp DQT   &kp EXCL   &kp LS(TAB)        &kp TAB                                      &kp LA(Y)          &trans        &trans  &trans        &kp PRCNT
+&kp AT            &kp SEMI  &kp DLLR   &kp SINGLE_QUOTE   &kp LA(TAB)    &trans           &none        &kp HASH           &kp LG(LBKT)  &trans  &kp LG(RBKT)  &kp LA(BACKSPACE)
+&kp LS(LG(Z))     &trans    &kp COLON  &trans             &kp BACKSLASH  &trans           &bootloader  &kp LS(AMPERSAND)  &trans        &trans  &trans        &bt BT_CLR
+&trans            &trans    &trans     &doublequotations  &brakets2      &ENbrackets      &trans       &trans                                                 &trans
             >;
         };
 
@@ -468,10 +475,10 @@
 
         layer_11 {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &trans             &kp LC(TAB)  &trans                         &kp C_BRI_DN     &kp LG(EQUAL)   &kp UP_ARROW    &kp LG(MINUS)    &kp C_BRI_INC
-&kp HOME        &trans                  &trans             &kp LBKT     &kp RBKT   &trans      &trans  &kp LG(H)        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(BACKSPACE)
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &doublequotations  &brakets2    &brackets  &trans      &trans  &kp C_VOLUME_UP  &kp K_MUTE      &kp C_VOL_DN    &trans           &kp F2
-&trans          &trans                  &trans             &trans       &trans     &trans      &trans  &kp LCTRL                                                         &trans
+&kp ESCAPE      &kp LC(LS(TAB))         &trans             &kp LC(TAB)  &trans                           &kp C_BRI_DN     &kp LG(EQUAL)   &kp UP_ARROW    &kp LG(MINUS)    &kp C_BRI_INC
+&kp HOME        &trans                  &trans             &kp LBKT     &kp RBKT     &trans      &trans  &kp LG(H)        &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp LA(BACKSPACE)
+&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &doublequotations  &brakets2    &ENbrackets  &trans      &trans  &kp C_VOLUME_UP  &kp K_MUTE      &kp C_VOL_DN    &trans           &kp F2
+&trans          &trans                  &trans             &trans       &trans       &trans      &trans  &kp LCTRL                                                         &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -479,10 +486,10 @@
 
         layer_12 {
             bindings = <
-&kp SINGLE_QUOTE  &kp DQT   &kp EXCL   &kp LS(TAB)        &kp TAB                                       &kp LA(Y)          &trans        &trans  &trans        &kp PRCNT
-&kp AT            &kp SEMI  &kp DLLR   &trans             &kp LA(TAB)    &trans         &bt BT_CLR_ALL  &kp HASH           &kp LG(LBKT)  &trans  &kp LG(RBKT)  &kp LA(BACKSPACE)
-&kp LS(LG(Z))     &trans    &kp COLON  &trans             &kp BACKSLASH  &trans         &bootloader     &kp LS(AMPERSAND)  &trans        &trans  &trans        &bt BT_CLR
-&trans            &trans    &trans     &doublequotations  &brakets2      &brackets      &trans          &trans                                                 &trans
+&kp SINGLE_QUOTE  &kp DQT   &kp EXCL   &kp LS(TAB)        &kp TAB                                         &kp LA(Y)          &trans        &trans  &trans        &kp PRCNT
+&kp AT            &kp SEMI  &kp DLLR   &trans             &kp LA(TAB)    &trans           &bt BT_CLR_ALL  &kp HASH           &kp LG(LBKT)  &trans  &kp LG(RBKT)  &kp LA(BACKSPACE)
+&kp LS(LG(Z))     &trans    &kp COLON  &trans             &kp BACKSLASH  &trans           &bootloader     &kp LS(AMPERSAND)  &trans        &trans  &trans        &bt BT_CLR
+&trans            &trans    &trans     &doublequotations  &brakets2      &ENbrackets      &trans          &trans                                                 &trans
             >;
         };
     };
