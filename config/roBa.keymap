@@ -279,7 +279,7 @@
         JP: JP {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&to 0 &kp LANG1>;
+            bindings = <&to 1 &kp LANG1>;
             label = "JP";
         };
 
