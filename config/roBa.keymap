@@ -137,7 +137,7 @@
         };
 
         tolayer8 {
-            bindings = <&to 9>;
+            bindings = <&to 10>;
             key-positions = <8 40>;
         };
 
@@ -236,7 +236,7 @@
         adv4andtol1: adv4andtol7 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 4>, <&macro_wait_time 200>, <&to 2>;
+            bindings = <&bt BT_SEL 4>, <&macro_wait_time 200>, <&to 3>;
 
             label = "ADV4ANDTOL7";
         };
@@ -338,7 +338,7 @@
         En_Layer: En_Layer {
             compatible = "zmk,behavior-hold-tap";
             label = "EN_LAYER";
-            bindings = <&mt>, <&EN>;
+            bindings = <&mo>, <&EN>;
 
             #binding-cells = <2>;
             tapping-term-ms = <230>;
@@ -351,10 +351,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W             &kp F         &kp P                        &kp B                                                  &kp J        &kp L  &kp U      &kp Y       &lt 6 BACKSPACE
-&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))         &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 6 O
-&mt LEFT_SHIFT Z  &lt 3 X           &kp C         &kp D                        &kp V             &kp COLON             &kp SEMICOLON  &kp K        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 8 BACKSPACE  &mt LSHIFT SPACE  &En_Layer LGUI 0      &JpLayer 8 0   &lt 7 ENTER                                &mo 4
+&kp Q             &kp W             &kp F         &kp P                        &kp B                                               &kp J        &kp L  &kp U      &kp Y       &lt 7 BACKSPACE
+&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 7 O
+&mt LEFT_SHIFT Z  &lt 5 X           &kp C         &kp D                        &kp V             &kp COLON          &kp SEMICOLON  &kp K        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
+&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 9 BACKSPACE  &mt LSHIFT SPACE  &En_Layer 2 0      &JpLayer 9 0   &lt 8 ENTER                                &mo 4
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -362,10 +362,21 @@
 
         JPLAYER {
             bindings = <
-&kp Q             &kp W             &kp K         &kp P                        &kp B                                                  &kp J        &kp Y  &kp U      &kp L       &lt 6 BACKSPACE
-&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))         &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 6 O
-&mt LEFT_SHIFT Z  &lt 3 X           &kp C         &kp D                        &kp V             &kp COLON             &kp SEMICOLON  &kp F        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 8 BACKSPACE  &mt LSHIFT SPACE  &En_Layer LGUI 0      &JpLayer 8 0   &lt 7 ENTER                                &mo 4
+&kp Q             &kp W             &kp K         &kp P                        &kp B                                               &kp J        &kp Y  &kp U      &kp L       &lt 7 BACKSPACE
+&kp A             &kp R             &kp S         &kp T                        &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 7 O
+&mt LEFT_SHIFT Z  &lt 5 X           &kp C         &kp D                        &kp V             &kp COLON          &kp SEMICOLON  &kp F        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
+&kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &hold_preferred 9 BACKSPACE  &mt LSHIFT SPACE  &En_Layer 0 0      &JpLayer 9 0   &lt 8 ENTER                                &mo 4
+            >;
+
+            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+        };
+
+        Command {
+            bindings = <
+&kp LG(Q)         &kp LG(W)             &kp LG(F)         &kp LG(P)                        &kp LG(B)                                               &kp LG(J)        &kp LG(L)  &kp LG(U)      &kp LG(Y)       &lt 7 LG(BACKSPACE)
+&kp LG(A)         &kp LG(R)             &kp LG(S)         &kp LG(T)                        &kp LG(G)             &kp LS(LG(S))      &kp MINUS      &kp LG(M)        &kp LG(N)  &kp LG(E)      &kp LG(I)       &arrowlayer 7 LG(O)
+&mt LEFT_SHIFT Z  &lt 5 X               &kp LG(C)         &kp LG(D)                        &kp LG(V)             &kp COLON          &kp SEMICOLON  &kp LG(K)        &kp LG(H)  &kp LG(COMMA)  &kp LG(PERIOD)  &mt LEFT_SHIFT LG(SLASH)
+&kp LG(LCTRL)     &kp LG(LEFT_CONTROL)  &kp LG(LEFT_ALT)  &hold_preferred 9 LG(BACKSPACE)  &mt LSHIFT LG(SPACE)  &En_Layer 0 0      &JpLayer 9 0   &lt 8 LG(ENTER)                                            &mo 4
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -380,21 +391,21 @@
             >;
         };
 
+        MOUSE {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &mo 8   &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
+            >;
+        };
+
         FUNCTION {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                       &kp F1  &kp F7  &kp F8  &kp F9  &kp F10
 &trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F4  &kp F5  &kp F6  &kp F10
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &kp F1  &kp F2  &kp F3  &kp F11
 &trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
-            >;
-        };
-
-        MOUSE {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &mo 7   &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
         };
 
@@ -439,7 +450,7 @@
         layer_8 {
             bindings = <
 &kp Q   &kp F   &kp R   &kp W   &kp L                          &kp J    &kp G  &kp U      &kp Y    &kp BACKSPACE
-&kp A   &kp H   &kp N   &kp S   &kp M   &kp H       &kp H      &kp K    &kp T  &kp E      &kp I    &arrowlayer 12 O
+&kp A   &kp H   &kp N   &kp S   &kp M   &kp H       &kp H      &kp K    &kp T  &kp E      &kp I    &arrowlayer 13 O
 &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N       &kp SEMI   &kp P    &kp D  &kp COMMA  &kp DOT  &kp FSLH
 &trans  &trans  &trans  &trans  &trans  &trans      &kp SPACE  &kp RET                             &kp RSHFT
             >;
