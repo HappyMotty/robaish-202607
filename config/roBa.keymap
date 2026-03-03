@@ -346,7 +346,7 @@
 
         JPCommand {
             bindings = <
-&kp LG(Q)             &kp LG(W)             &kp LG(F)         &kp LG(B)                         &kp LG(P)                                               &kp LG(L)        &kp LG(J)  &kp LG(U)      &kp LG(Y)       &lt 5 LG(BACKSPACE)
+&kp LG(Q)             &kp LG(W)             &kp LG(F)         &kp LG(P)                         &kp LG(B)                                               &kp LG(J)        &kp LG(L)  &kp LG(U)      &kp LG(Y)       &lt 5 LG(BACKSPACE)
 &kp LG(A)             &kp LG(R)             &kp LG(S)         &kp LG(T)                         &kp LG(G)             &kp LS(LG(S))      &kp MINUS      &kp LG(M)        &kp LG(N)  &kp LG(E)      &kp LG(I)       &arrowlayer 5 LG(O)
 &mt LEFT_SHIFT LG(Z)  &lt 7 LG(X)           &kp LG(C)         &kp LG(D)                         &kp LG(V)             &kp COLON          &kp SEMICOLON  &kp LG(K)        &kp LG(H)  &kp LG(COMMA)  &kp LG(PERIOD)  &mt LEFT_SHIFT LG(SLASH)
 &kp LG(LCTRL)         &kp LG(LEFT_CONTROL)  &kp LG(LEFT_ALT)  &hold_preferred 10 LG(BACKSPACE)  &mt LSHIFT LG(SPACE)  &trans             &JpLayer 10 0  &lt 8 LG(ENTER)                                            &mo 6
