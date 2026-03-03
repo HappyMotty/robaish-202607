@@ -324,7 +324,7 @@
 
         JPLAYER {
             bindings = <
-&kp Q             &kp W             &kp K         &kp P                     &kp B                                               &kp J        &kp L  &kp U      &kp Y       &lt 5 BACKSPACE
+&kp Q             &kp W             &kp K         &kp P                     &kp B                                               &kp L        &kp J  &kp U      &kp Y       &lt 5 BACKSPACE
 &kp A             &kp R             &kp S         &kp T                     &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 5 O
 &mt LEFT_SHIFT Z  &lt 7 X           &kp C         &kp D                     &kp V             &kp COLON          &kp SEMICOLON  &kp F        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
 &kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &tap_keyrepeat_hold 11 0  &mt LSHIFT SPACE  &En_Layer 3 0      &JpLayer 11 0  &lt 8 ENTER                                &mo 6
@@ -346,7 +346,7 @@
 
         JPCommand {
             bindings = <
-&kp LG(Q)             &kp LG(W)             &kp LG(F)         &kp LG(P)                         &kp LG(B)                                               &kp LG(J)        &kp LG(L)  &kp LG(U)      &kp LG(Y)       &lt 5 LG(BACKSPACE)
+&kp LG(Q)             &kp LG(W)             &kp LG(F)         &kp LG(B)                         &kp LG(P)                                               &kp LG(L)        &kp LG(J)  &kp LG(U)      &kp LG(Y)       &lt 5 LG(BACKSPACE)
 &kp LG(A)             &kp LG(R)             &kp LG(S)         &kp LG(T)                         &kp LG(G)             &kp LS(LG(S))      &kp MINUS      &kp LG(M)        &kp LG(N)  &kp LG(E)      &kp LG(I)       &arrowlayer 5 LG(O)
 &mt LEFT_SHIFT LG(Z)  &lt 7 LG(X)           &kp LG(C)         &kp LG(D)                         &kp LG(V)             &kp COLON          &kp SEMICOLON  &kp LG(K)        &kp LG(H)  &kp LG(COMMA)  &kp LG(PERIOD)  &mt LEFT_SHIFT LG(SLASH)
 &kp LG(LCTRL)         &kp LG(LEFT_CONTROL)  &kp LG(LEFT_ALT)  &hold_preferred 10 LG(BACKSPACE)  &mt LSHIFT LG(SPACE)  &trans             &JpLayer 10 0  &lt 8 LG(ENTER)                                            &mo 6
