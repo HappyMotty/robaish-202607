@@ -398,7 +398,7 @@
 &mt LEFT_ALT ESC  &kp KP_NUMBER_7  &kp UP_ARROW     &kp KP_NUMBER_9  &kp LC(LG(D))                                               &kp EQUAL             &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0
 &kp TAB           &kp LEFT         &kp DOWN_ARROW   &kp RIGHT        &kp LG(SPACE)  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp MINUS             &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp SINGLE_QUOTE
 &kp LC(K)         &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp LA(SPACE)  &kp EQUAL                    &trans          &mt LEFT_SHIFT TILDE  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp SEMICOLON
-&trans            &trans           &trans           &trans           &trans         &trans                       &trans          &trans                                                          &trans
+&trans            &trans           &trans           &trans           &trans         &mt LGUI LANG2               &trans          &trans                                                          &trans
             >;
         };
 
