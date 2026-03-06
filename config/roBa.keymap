@@ -261,7 +261,7 @@
             bindings = <&mo>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <220>;
             flavor = "tap-preferred";
             retro-tap;
             quick-tap-ms = <0>;
@@ -315,7 +315,7 @@
             bindings = <
 &kp Q             &kp W             &kp F         &kp P                     &kp B                                               &kp J        &kp L  &kp U      &kp Y       &lt 5 BACKSPACE
 &kp A             &kp R             &kp S         &kp T                     &kp G             &kp LS(LG(S))      &kp MINUS      &kp M        &kp N  &kp E      &kp I       &arrowlayer 5 O
-&mt LEFT_SHIFT Z  &lt 7 X           &kp C         &kp D                     &kp V             &kp COLON          &kp SEMICOLON  &kp K        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
+&mt LEFT_SHIFT Z  &arrowlayer 7 X   &kp C         &kp D                     &kp V             &kp COLON          &kp SEMICOLON  &kp K        &kp H  &kp COMMA  &kp PERIOD  &mt LEFT_SHIFT SLASH
 &kp LCTRL         &kp LEFT_CONTROL  &kp LEFT_ALT  &tap_keyrepeat_hold 10 0  &mt LSHIFT SPACE  &En_Layer 2 0      &JpLayer 10 0  &lt 8 ENTER                                &mo 6
             >;
 
