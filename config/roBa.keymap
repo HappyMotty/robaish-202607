@@ -81,12 +81,12 @@
 
         KagiKakkoH {
             bindings = <&kp LEFT_BRACKET>;
-            key-positions = <17 18>;
+            key-positions = <39 29 30>;
         };
 
         KagiKakkoT {
             bindings = <&kp RIGHT_BRACKET>;
-            key-positions = <18 19>;
+            key-positions = <31 30 39>;
         };
     };
 
