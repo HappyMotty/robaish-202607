@@ -29,29 +29,34 @@
     combos {
         compatible = "zmk,combos";
 
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
-
         shift_tab {
             bindings = <&kp LS(TAB)>;
-            key-positions = <12 13>;
+            key-positions = <10 11>;
         };
 
-        muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 10>;
-        };
-
-        double_quotation {
+        double-quote {
             bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
+            key-positions = <19 20>;
         };
 
-        eq {
-            bindings = <&kp EQUAL>;
-            key-positions = <24 25>;
+        go-func {
+            bindings = <&lt_to_layer_0 6>;
+            key-positions = <39 41>;
+        };
+
+        yr {
+            bindings = <&kp Y>;
+            key-positions = <4 3>;
+        };
+
+        controll {
+            bindings = <&kp LEFT_CONTROL>;
+            key-positions = <10 22>;
+        };
+
+        escape {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 10>;
         };
     };
 
@@ -71,10 +76,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E             &kp R               &kp T                                                        &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp LC(A)         &kp S         &kp D             &kp F               &kp G        &none                            &kp COLON      &kp H        &kp J  &kp K      &kp L    &kp GRAVE
-&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V               &kp B        &tog 5                           &kp B          &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LEFT_COMMAND  &kp LEFT_ALT  &kp LEFT_CONTROL  &mt LEFT_SHIFT TAB  &lt 2 SPACE  &lt_to_layer_0 0 LANGUAGE_2      &kp BACKSPACE  &lt 1 LANG1                             &lt_to_layer_0 4 ENTER
+&kp Q             &kp W         &kp E             &kp R           &kp T                                                        &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp LC(A)         &kp S         &kp D             &kp F           &kp G        &none                            &kp G          &kp H        &kp J  &kp K      &kp L    &kp ENTER
+&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V           &kp B        &lt_to_layer_0 7 none            &kp B          &kp N        &kp M  &kp COMMA  &kp DOT  &lt_to_layer_0 5 /
+&kp LEFT_COMMAND  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &lt 2 SPACE  &lt_to_layer_0 3 LANGUAGE_2      &kp BACKSPACE  &lt 1 LANG1                             &lt_to_layer_0 4 ENTER
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
@@ -82,48 +87,48 @@
 
         FUNCTION-NUM {
             bindings = <
-&kp ESC         &kp F1  &kp F2  &kp F3  &kp F10                             &none         &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &none
-&kp TAB         &kp F4  &kp F5  &kp F6  &kp F11  &trans      &none          &none         &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &none
-&kp LEFT_SHIFT  &kp F7  &kp F8  &kp F9  &kp F12  &trans      &trans         &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none
-&trans          &trans  &trans  &trans  &trans   &trans      &kp BACKSPACE  &trans                                                  &kp ENTER
+&none                 &kp F1                &kp F2                &kp F3  &kp F10                             &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
+&kp TAB               &kp F4                &kp F5                &kp F6  &kp F11  &trans      &none          &kp SLASH     &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp PLUS
+&none                 &kp F7                &kp F8                &kp F9  &kp F12  &trans      &trans         &kp NUMBER_0  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &none
+&kp LS(LG(NUMBER_3))  &kp LS(LG(NUMBER_4))  &kp LS(LG(NUMBER_5))  &trans  &trans   &trans      &kp BACKSPACE  &trans                                                  &none
             >;
         };
 
         NUM1 {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT                             &kp CARET     &kp AMPERSAND         &kp TILDE              &kp MINUS       &kp PLUS
-&kp TAB          &none        &none     &none       &none        &none       &kp SEMICOLON  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE
-&kp LEFT_SHIFT   &none        &none     &none       &none        &none       &none          &none         &kp LESS_THAN         &kp GREATER_THAN       &kp QUESTION    &kp BACKSLASH
-&trans           &trans       &trans    &trans      &trans       &trans      &kp BACKSPACE  &trans                                                                     &kp ENTER
+&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR      &kp PERCENT                             &kp CARET  &kp AMPERSAND         &kp TILDE              &kp MINUS       &kp PLUS
+&kp TAB          &none        &none     &none           &none        &none       &kp SEMICOLON  &kp COLON  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE
+&kp LEFT_SHIFT   &none        &none     &none           &none        &none       &none          &none      &kp LESS_THAN         &kp GREATER_THAN       &kp QUESTION    &kp BACKSLASH
+&trans           &trans       &trans    &kp LEFT_SHIFT  &trans       &trans      &kp BACKSPACE  &trans                                                                  &none
             >;
         };
 
         NUM2 {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT                             &trans  &kp SQT  &kp DOUBLE_QUOTES  &kp EQUAL         &kp PIPE
-&kp TAB          &trans       &trans    &trans      &trans       &trans      &trans         &trans  &trans   &trans             &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&kp LEFT_SHIFT   &trans       &trans    &trans      &trans       &trans      &trans         &trans  &trans   &trans             &trans            &kp UNDERSCORE
-&trans           &trans       &trans    &trans      &trans       &trans      &kp BACKSPACE  &trans                                                &kp ENTER
+&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR      &kp PERCENT                             &kp GRAVE  &kp SQT      &kp DOUBLE_QUOTES  &kp EQUAL         &kp PIPE
+&kp TAB          &trans       &trans    &trans          &trans       &trans      &kp SEMICOLON  &kp COLON  &kp AT_SIGN  &kp ASTERISK       &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&kp LEFT_SHIFT   &trans       &trans    &trans          &trans       &trans      &trans         &trans     &trans       &trans             &kp SLASH         &kp UNDERSCORE
+&trans           &trans       &trans    &kp LEFT_SHIFT  &trans       &trans      &kp BACKSPACE  &trans                                                       &none
             >;
         };
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &none     &none     &none     &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
+&trans            &trans  &trans  &trans          &trans                      &trans  &trans    &trans    &trans    &trans
+&kp LEFT_CONTROL  &trans  &trans  &trans          &trans  &trans      &trans  &trans  &none     &none     &none     &trans
+&kp LEFT_SHIFT    &trans  &trans  &trans          &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans
+&kp LEFT_COMMAND  &trans  &trans  &kp LEFT_SHIFT  &trans  &trans      &trans  &trans                                &trans
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
-        ALLOW {
+        ARROW {
             bindings = <
-&kp ESCAPE      &trans  &trans  &trans  &trans                             &trans  &trans          &trans          &trans          &trans
-&kp TAB         &trans  &trans  &trans  &trans  &trans      &trans         &trans  &trans          &kp UP_ARROW    &trans          &trans
+&kp ESCAPE      &trans  &trans  &trans  &trans                             &trans  &kp HOME        &trans          &kp PAGE_UP     &trans
+&kp TAB         &trans  &trans  &trans  &trans  &trans      &trans         &trans  &kp END         &kp UP_ARROW    &kp PAGE_DOWN   &kp ENTER
 &kp LEFT_SHIFT  &trans  &trans  &trans  &trans  &tog 0      &trans         &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp DOWN_ARROW  &trans
-&trans          &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &trans                                                  &kp ENTER
+&trans          &trans  &trans  &trans  &trans  &trans      &kp BACKSPACE  &trans                                                  &none
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
@@ -135,6 +140,15 @@
 &trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
 &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
 &trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
+            >;
+        };
+
+        VIM-ARROW {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                      &trans          &trans        &trans          &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp LEFT_ARROW  &kp UP_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans          &trans        &trans          &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                         &trans
             >;
         };
     };
