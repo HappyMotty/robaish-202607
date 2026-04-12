@@ -96,19 +96,19 @@
 
         NUM1 {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR      &kp PERCENT                             &kp CARET  &kp AMPERSAND         &kp TILDE              &kp MINUS       &kp PLUS
-&kp TAB          &none        &none     &none           &none        &none       &kp SEMICOLON  &kp COLON  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE
-&kp LEFT_SHIFT   &none        &none     &none           &none        &none       &none          &none      &kp LESS_THAN         &kp GREATER_THAN       &kp QUESTION    &kp BACKSLASH
-&trans           &trans       &trans    &kp LEFT_SHIFT  &trans       &trans      &kp BACKSPACE  &trans                                                                  &none
+&kp EXCLAMATION   &kp AT_SIGN  &kp HASH  &kp DOLLAR      &kp PERCENT                             &kp CARET  &kp AMPERSAND         &kp TILDE              &kp MINUS       &kp PLUS
+&kp TAB           &none        &none     &none           &none        &none       &kp SEMICOLON  &kp COLON  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACE  &kp RIGHT_BRACE
+&kp LEFT_SHIFT    &none        &none     &none           &none        &none       &none          &none      &kp LESS_THAN         &kp GREATER_THAN       &kp QUESTION    &kp BACKSLASH
+&kp LEFT_COMMAND  &trans       &trans    &kp LEFT_SHIFT  &trans       &trans      &kp BACKSPACE  &trans                                                                  &none
             >;
         };
 
         NUM2 {
             bindings = <
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR      &kp PERCENT                             &kp GRAVE  &kp SQT      &kp DOUBLE_QUOTES  &kp EQUAL         &kp PIPE
-&kp TAB          &trans       &trans    &trans          &trans       &trans      &kp SEMICOLON  &kp COLON  &kp AT_SIGN  &kp ASTERISK       &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&kp LEFT_SHIFT   &trans       &trans    &trans          &trans       &trans      &trans         &trans     &trans       &trans             &kp SLASH         &kp UNDERSCORE
-&trans           &trans       &trans    &kp LEFT_SHIFT  &trans       &trans      &kp BACKSPACE  &trans                                                       &none
+&kp EXCLAMATION   &kp AT_SIGN  &kp HASH  &kp DOLLAR      &kp PERCENT                             &kp GRAVE  &kp SQT      &kp DOUBLE_QUOTES  &kp EQUAL         &kp PIPE
+&kp TAB           &trans       &trans    &trans          &trans       &trans      &kp SEMICOLON  &kp COLON  &kp AT_SIGN  &kp ASTERISK       &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&kp LEFT_SHIFT    &trans       &trans    &trans          &trans       &trans      &trans         &trans     &trans       &trans             &kp SLASH         &kp UNDERSCORE
+&kp LEFT_COMMAND  &trans       &trans    &kp LEFT_SHIFT  &trans       &trans      &kp BACKSPACE  &trans                                                       &none
             >;
         };
 
@@ -134,7 +134,7 @@
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
         };
 
-        layer_6 {
+        BlueTooth {
             bindings = <
 &trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
