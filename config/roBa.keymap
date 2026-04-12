@@ -41,7 +41,7 @@
 
         go-func {
             bindings = <&lt 6 LANGUAGE_1>;
-            key-positions = <39 41>;
+            key-positions = <41 40>;
         };
 
         yr {
