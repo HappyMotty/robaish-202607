@@ -78,7 +78,7 @@
             bindings = <
 &kp Q             &kp W         &kp E             &kp R           &kp T                                                        &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp LC(A)         &kp S         &kp D             &kp F           &kp G        &none                            &kp G          &kp H        &kp J  &kp K      &kp L    &kp ENTER
-&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V           &kp B        &lt_to_layer_0 7 none            &kp B          &kp N        &kp M  &kp COMMA  &kp DOT  &lt_to_layer_0 5 /
+&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V           &kp B        &lt_to_layer_0 7 none            &kp B          &kp N        &kp M  &kp COMMA  &kp DOT  &lt_to_layer_0 5
 &kp LEFT_COMMAND  &kp LEFT_ALT  &kp LEFT_CONTROL  &kp LEFT_SHIFT  &lt 2 SPACE  &lt_to_layer_0 3 LANGUAGE_2      &kp BACKSPACE  &lt 1 LANG1                             &lt_to_layer_0 4 ENTER
             >;
 
@@ -114,10 +114,10 @@
 
         MOUSE {
             bindings = <
-&trans            &trans  &trans  &trans          &trans                      &trans  &trans    &trans    &trans    &trans
-&kp LEFT_CONTROL  &trans  &trans  &trans          &trans  &trans      &trans  &trans  &none     &none     &none     &trans
-&kp LEFT_SHIFT    &trans  &trans  &trans          &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans
-&kp LEFT_COMMAND  &trans  &trans  &kp LEFT_SHIFT  &trans  &trans      &trans  &trans                                &trans
+&trans            &trans  &trans  &trans          &trans                              &trans  &trans    &trans    &trans    &trans
+&kp LEFT_CONTROL  &trans  &trans  &trans          &trans          &trans      &trans  &trans  &none     &none     &none     &trans
+&kp LEFT_SHIFT    &trans  &trans  &trans          &trans          &trans      &trans  &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans
+&kp LEFT_COMMAND  &trans  &trans  &msc MOVE_Y(0)  &msc MOVE_X(0)  &trans      &trans  &trans                                &trans
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
