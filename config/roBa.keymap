@@ -127,10 +127,10 @@
 
         SCROLL {
             bindings = <
-&kp ESC     &trans  &trans  &macro2  &macro1                      &kp PAGE_UP       &msc MOVE_Y(15)   &kp HOME         &trans  &trans
-&trans      &trans  &trans  &trans   &trans   &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &trans  &trans
-&trans      &trans  &trans  &trans   &trans   &trans      &trans  &kp PAGE_DOWN     &trans            &kp END          &trans  &kp LC(LEFT_SHIFT)
-&sys_reset  &trans  &trans  &trans   &trans   &trans      &trans  &trans                                                       &bootloader
+&kp ESC  &trans  &trans  &macro2  &macro1                      &kp PAGE_UP       &msc MOVE_Y(15)   &kp HOME         &trans  &trans
+&trans   &trans  &trans  &trans   &trans   &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &trans  &trans
+&trans   &trans  &trans  &trans   &trans   &trans      &trans  &kp PAGE_DOWN     &trans            &kp END          &trans  &kp LC(LEFT_SHIFT)
+&trans   &trans  &trans  &trans   &trans   &trans      &trans  &trans                                                       &trans
             >;
         };
     };
