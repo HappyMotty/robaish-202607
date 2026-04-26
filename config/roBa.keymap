@@ -89,10 +89,10 @@
 
         default_layer {
             bindings = <
-&kp Q      &kp W           &kp E         &kp R  &kp T                                                       &kp Y      &kp U  &kp I      &kp O         &kp P
-&kp A      &kp S           &kp D         &kp F  &kp G  &trans                    &kp TAB                    &kp H      &kp J  &kp K      &kp L         &lt 3 ENTER
-&kp Z      &kp X           &kp C         &kp V  &kp B  &kp DELETE                &kp BACKSPACE              &kp N      &kp M  &kp COMMA  &lt 4 PERIOD  &kp SLASH
-&kp LCTRL  &kp LEFT_SHIFT  &kp LEFT_ALT  &mo 1  &mo 2  &mt LCTRL LANGUAGE_2      &mt LEFT_SHIFT LANGUAGE_1  &kp SPACE                                  &kp LEFT_WIN
+&kp Q      &kp W           &kp E         &kp R  &kp T                                                       &kp Y      &kp U  &kp I      &kp O  &kp P
+&kp A      &kp S           &kp D         &kp F  &kp G  &trans                    &kp TAB                    &kp H      &kp J  &kp K      &kp L  &lt 3 ENTER
+&kp Z      &kp X           &kp C         &kp V  &kp B  &kp DELETE                &kp BACKSPACE              &kp N      &kp M  &kp COMMA  &mo 4  &mo 3
+&kp LCTRL  &kp LEFT_SHIFT  &kp LEFT_ALT  &mo 1  &mo 2  &mt LCTRL LANGUAGE_2      &mt LEFT_SHIFT LANGUAGE_1  &kp SPACE                           &kp LEFT_WIN
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
@@ -102,7 +102,7 @@
             bindings = <
 &kp F1        &kp F2        &kp F3        &kp F4        &kp F5                            &kp F6        &kp F7        &kp F8        &kp F9        &kp F10
 &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp NUMBER_5  &trans      &trans  &kp NUMBER_6  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0
-&kp TILDE     &trans        &trans        &trans        &trans        &trans      &trans  &kp F11       &kp F12       &trans        &trans        &trans
+&kp GRAVE     &trans        &trans        &trans        &trans        &trans      &trans  &kp F11       &kp F12       &trans        &trans        &trans
 &trans        &trans        &trans        &trans        &trans        &trans      &trans  &trans                                                  &trans
             >;
         };
@@ -111,7 +111,7 @@
             bindings = <
 &kp HOME  &kp LS(LC(TAB))  &kp UP_ARROW    &kp LC(TAB)      &kp END                         &kp MINUS      &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
 &trans    &kp LEFT_ARROW   &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp DELETE  &trans      &trans  &kp BACKSPACE  &trans     &kp SEMICOLON     &kp SINGLE_QUOTE   &trans
-&trans    &trans           &trans          &trans           &trans      &trans      &trans  &trans         &kp COMMA  &kp PERIOD        &kp SLASH          &trans
+&trans    &trans           &trans          &trans           &trans      &trans      &trans  &trans         &kp COMMA  &kp PERIOD        &kp SLASH          &kp UNDERSCORE
 &trans    &trans           &trans          &trans           &trans      &trans      &trans  &trans                                                         &trans
             >;
         };
@@ -127,10 +127,10 @@
 
         SCROLL {
             bindings = <
-&kp ESC     &trans  &trans  &macro2  &macro1                          &kp PAGE_UP       &msc MOVE_Y(-10)  &kp HOME         &trans  &trans
-&trans      &trans  &trans  &trans   &trans   &trans          &trans  &msc MOVE_X(-10)  &msc MOVE_Y(10)   &msc MOVE_X(10)  &trans  &trans
-&trans      &trans  &trans  &trans   &trans   &kp K_MUTE      &trans  &kp PAGE_DOWN     &trans            &kp END          &trans  &kp LC(LEFT_SHIFT)
-&sys_reset  &trans  &trans  &trans   &trans   &trans          &trans  &trans                                                       &bootloader
+&kp ESC     &trans  &trans  &macro2  &macro1                      &kp PAGE_UP       &msc MOVE_Y(15)   &kp HOME         &trans  &trans
+&trans      &trans  &trans  &trans   &trans   &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &trans  &trans
+&trans      &trans  &trans  &trans   &trans   &trans      &trans  &kp PAGE_DOWN     &trans            &kp END          &trans  &kp LC(LEFT_SHIFT)
+&sys_reset  &trans  &trans  &trans   &trans   &trans      &trans  &trans                                                       &bootloader
             >;
         };
     };
