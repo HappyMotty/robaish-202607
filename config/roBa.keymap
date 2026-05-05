@@ -1,5 +1,4 @@
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
@@ -110,10 +109,10 @@
 
         ARROW {
             bindings = <
-&kp HOME       &kp LG(LA(LEFT_ARROW))  &kp UP_ARROW    &kp LG(LA(RIGHT_ARROW))  &kp END                         &kp MINUS      &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
-&kp LC(LG(F))  &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp DELETE  &trans      &trans  &kp BACKSPACE  &none      &kp SEMICOLON     &kp SINGLE_QUOTE   &kp UNDER
-&none          &none                   &none           &none                    &none       &trans      &trans  &none          &none      &kp COMMA         &kp PERIOD         &kp SLASH
-&trans         &trans                  &trans          &trans                   &trans      &trans      &trans  &trans                                                         &trans
+&kp HOME       &kp LG(LA(LEFT_ARROW))  &kp UP_ARROW    &kp LG(LA(RIGHT_ARROW))  &kp END                         &kp MINUS      &kp EQUAL      &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
+&kp LC(LG(F))  &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp DELETE  &trans      &trans  &kp BACKSPACE  &kp SEMICOLON  &kp APOSTROPHE    &none              &kp UNDER
+&none          &none                   &none           &none                    &none       &trans      &trans  &none          &none          &kp COMMA         &kp PERIOD         &kp SLASH
+&trans         &trans                  &trans          &trans                   &trans      &trans      &trans  &trans                                                             &trans
             >;
         };
 
@@ -128,10 +127,10 @@
 
         SCROLL {
             bindings = <
-&kp ESC  &none   &none   &macro1  &macro2                      &kp PAGE_UP       &msc MOVE_Y(15)   &kp HOME         &bt BT_SEL 0  &bt BT_SEL 1
-&none    &none   &none   &none    &none    &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &none         &kp LG(LEFT_SHIFT)
-&none    &none   &none   &none    &none    &trans      &trans  &kp PAGE_DOWN     &none             &kp END          &none         &kp LEFT_SHIFT
-&trans   &trans  &trans  &trans   &trans   &trans      &trans  &trans                                                             &trans
+&kp ESC  &none   &none   &none   &none                       &kp PAGE_UP       &msc MOVE_Y(15)   &kp HOME         &none  &none
+&none    &none   &none   &none   &none   &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &none  &kp LG(LEFT_SHIFT)
+&none    &none   &none   &none   &none   &trans      &trans  &kp PAGE_DOWN     &none             &kp END          &none  &kp LEFT_SHIFT
+&trans   &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                      &trans
             >;
         };
     };
