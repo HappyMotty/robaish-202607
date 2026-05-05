@@ -92,7 +92,7 @@
             bindings = <
 &kp Q      &kp W           &kp E         &kp R  &kp T                                                       &kp Y      &kp U  &kp I  &kp O    &kp P
 &kp A      &kp S           &kp D         &kp F  &kp G  &kp DEL                   &kp BACKSPACE              &kp H      &kp J  &kp K  &lt 4 L  &lt 3 ENTER
-&kp Z      &kp X           &kp C         &kp V  &kp B  &kp LA(TAB)               &kp TAB                    &kp N      &kp M  &none  &none    &kp TAB
+&kp Z      &kp X           &kp C         &kp V  &kp B  &kp DEL                   &kp TAB                    &kp N      &kp M  &none  &none    &kp TAB
 &kp LCTRL  &kp LEFT_SHIFT  &kp LEFT_ALT  &mo 1  &mo 2  &mt LCTRL LANGUAGE_2      &mt LEFT_SHIFT LANGUAGE_1  &kp SPACE                         &kp LEFT_WIN
             >;
 
