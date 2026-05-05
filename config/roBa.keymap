@@ -90,10 +90,10 @@
 
         default_layer {
             bindings = <
-&kp Q      &kp W           &kp E         &kp R  &kp T                                                       &kp Y      &kp U  &kp I  &kp O    &kp P
-&kp A      &kp S           &kp D         &kp F  &kp G  &kp DEL                   &kp BACKSPACE              &kp H      &kp J  &kp K  &lt 4 L  &lt 3 ENTER
-&kp Z      &kp X           &kp C         &kp V  &kp B  &kp DEL                   &kp TAB                    &kp N      &kp M  &none  &none    &kp TAB
-&kp LCTRL  &kp LEFT_SHIFT  &kp LEFT_ALT  &mo 1  &mo 2  &mt LCTRL LANGUAGE_2      &mt LEFT_SHIFT LANGUAGE_1  &kp SPACE                         &kp LEFT_WIN
+&kp Q         &kp W           &kp E         &kp R  &kp T                                                          &kp Y      &kp U  &kp I  &kp O    &kp P
+&kp A         &kp S           &kp D         &kp F  &kp G  &kp DEL                      &kp BACKSPACE              &kp H      &kp J  &kp K  &lt 4 L  &lt 3 ENTER
+&kp Z         &kp X           &kp C         &kp V  &kp B  &kp DEL                      &kp TAB                    &kp N      &kp M  &none  &none    &kp TAB
+&kp LEFT_WIN  &kp LEFT_SHIFT  &kp LEFT_ALT  &mo 1  &mo 2  &mt LEFT_WIN LANGUAGE_2      &mt LEFT_SHIFT LANGUAGE_1  &kp SPACE                         &kp LEFT_CONTROL
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_DOWN C_VOLUME_UP>;
@@ -110,26 +110,26 @@
 
         ARROW {
             bindings = <
-&kp HOME  &kp LS(LC(TAB))  &kp UP_ARROW    &kp LC(TAB)      &kp END                         &kp MINUS      &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
-&none     &kp LEFT_ARROW   &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp DELETE  &trans      &trans  &kp BACKSPACE  &none      &kp SEMICOLON     &kp SINGLE_QUOTE   &kp UNDER
-&none     &none            &none           &none            &none       &trans      &trans  &none          &none      &kp COMMA         &kp PERIOD         &kp SLASH
-&trans    &trans           &trans          &trans           &trans      &trans      &trans  &trans                                                         &trans
+&kp HOME       &kp LG(LA(LEFT_ARROW))  &kp UP_ARROW    &kp LG(LA(RIGHT_ARROW))  &kp END                         &kp MINUS      &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp BACKSLASH
+&kp LC(LG(F))  &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp DELETE  &trans      &trans  &kp BACKSPACE  &none      &kp SEMICOLON     &kp SINGLE_QUOTE   &kp UNDER
+&none          &none                   &none           &none                    &none       &trans      &trans  &none          &none      &kp COMMA         &kp PERIOD         &kp SLASH
+&trans         &trans                  &trans          &trans                   &trans      &trans      &trans  &trans                                                         &trans
             >;
         };
 
         MOUSE {
             bindings = <
-&kp LC(Q)  &kp LC(W)  &kp LC(E)  &kp LC(R)  &kp LC(T)                      &kp LS(LG(S))  &kp LC(W)  &kp LC(TAB)  &none     &none
-&kp LC(A)  &kp LC(S)  &kp LC(D)  &kp LC(F)  &kp LC(G)  &trans      &trans  &mkp MB5       &mkp MB1   &mkp MB3     &mkp MB2  &none
-&kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(B)  &trans      &trans  &mkp MB4       &none      &none        &none     &none
-&trans     &trans     &trans     &trans     &trans     &trans      &trans  &trans                                           &trans
+&kp LG(Q)  &kp LG(W)  &kp LG(E)  &kp LG(R)  &kp LG(T)                      &kp LS(LG(NUMBER_4))  &kp LG(W)  &kp LG(LA(RIGHT_ARROW))  &kp LS(LG(N5))  &kp LG(LS(NUMBER_2))
+&kp LG(A)  &kp LG(S)  &kp LG(D)  &kp LG(F)  &kp LG(G)  &trans      &trans  &mkp MB5              &mkp MB1   &mkp MB3                 &mkp MB2        &none
+&kp LG(Z)  &kp LG(X)  &kp LG(C)  &kp LG(V)  &kp LG(B)  &trans      &trans  &mkp MB4              &none      &none                    &none           &none
+&trans     &trans     &trans     &trans     &trans     &trans      &trans  &trans                                                                    &trans
             >;
         };
 
         SCROLL {
             bindings = <
 &kp ESC  &none   &none   &macro1  &macro2                      &kp PAGE_UP       &msc MOVE_Y(15)   &kp HOME         &bt BT_SEL 0  &bt BT_SEL 1
-&none    &none   &none   &none    &none    &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &none         &kp LC(LEFT_SHIFT)
+&none    &none   &none   &none    &none    &trans      &trans  &msc MOVE_X(-15)  &msc MOVE_Y(-15)  &msc MOVE_X(15)  &none         &kp LG(LEFT_SHIFT)
 &none    &none   &none   &none    &none    &trans      &trans  &kp PAGE_DOWN     &none             &kp END          &none         &kp LEFT_SHIFT
 &trans   &trans  &trans  &trans   &trans   &trans      &trans  &trans                                                             &trans
             >;
