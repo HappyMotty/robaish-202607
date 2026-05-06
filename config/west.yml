@@ -10,8 +10,7 @@ manifest:
       revision: v0.3-branch
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      # remote: kumamuk-git
-      url: https://github.com/takuya-890205/zmk-pmw3610-driver # <-- あなたのURLを直接指定
+      remote: kumamuk-git
       revision: main
   self:
     path: config
