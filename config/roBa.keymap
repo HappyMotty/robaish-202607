@@ -79,6 +79,16 @@
             tapping-term-ms = <200>;
             bindings = <&kp Q>, <&kp TAB>;
         };
+
+        ht_bspc_del: ht_bspc_del {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT_BSPC_DEL";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
     };
 
     keymap {
@@ -108,7 +118,7 @@
             bindings = <
 &kp LS(NUMBER_8)  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp NUMBER_0                           &trans    &trans    &kp UP    &trans     &trans
 &kp LS(EQUAL)     &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp ENTER      &trans          &trans  &kp HOME  &kp LEFT  &kp DOWN  &kp RIGHT  &kp END
-&kp MINUS         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp BACKSPACE  &kp DELETE      &trans  &trans    &trans    &trans    &trans     &trans
+&kp MINUS         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &ht_bspc_del DEL BSPC  &kp DELETE      &trans  &trans    &trans    &trans    &trans     &trans
 &kp SLASH         &kp EQUAL     &kp PERIOD    &trans        &trans         &trans          &trans  &trans                                   &trans
             >;
         };
