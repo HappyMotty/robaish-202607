@@ -154,19 +154,19 @@
 
         FUNCTION {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                       &kp F3  &kp F2    &kp UP    &kp F4     &kp F5
-&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp LEFT  &kp DOWN  &kp RIGHT  &kp F10
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &kp F7    &trans    &kp F8     &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                                 &kp F12
+&trans  &kp F2  &trans  &kp F4  &trans                       &kp F3            &kp F2    &kp UP    &kp F4     &kp F5
+&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp RS(RG(LEFT))  &kp LEFT  &kp DOWN  &kp RIGHT  &kp RS(RG(RIGHT))
+&trans  &kp F7  &kp F8  &trans  &trans  &trans      &trans   &trans            &kp F7    &trans    &kp F8     &kp F11
+&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                                           &kp F12
             >;
         };
 
         ARROW {
             bindings = <
-&kp PAGE_UP    &kp F2    &kp UP_ARROW    &kp F4        &kp MINUS                         &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
-&kp PAGE_DOWN  &kp LEFT  &kp DOWN_ARROW  &kp RIGHT     &kp LS(SEMI)  &trans      &trans  &kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp COLON
-&kp NUMBER_0   &kp F7    &kp F8          &kp F11       &trans        &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0
-&trans         &trans    &trans          &kp NUMBER_0  &trans        &trans      &trans  &kp NUMBER_0                                            &trans
+&kp PAGE_UP    &kp F2    &kp UP_ARROW  &kp F4        &kp MINUS                         &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
+&kp PAGE_DOWN  &mkp MB3  &mkp MB2      &mkp MB1      &kp LS(SEMI)  &trans      &trans  &kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp COLON
+&kp NUMBER_0   &kp F7    &kp F8        &kp F11       &trans        &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0
+&trans         &trans    &trans        &kp NUMBER_0  &trans        &trans      &trans  &kp NUMBER_0                                            &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
