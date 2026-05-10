@@ -39,35 +39,30 @@
         compatible = "zmk,combos";
 
         // Q + W = ESC
-
         combo_esc {
             bindings = <&kp ESCAPE>;
             key-positions = <0 1>;
         };
 
         // F + G = 左クリック (マウスレイヤーに入らなくても押せる)
-
         combo_click {
             bindings = <&mkp MB1>;
             key-positions = <13 14>;
         };
 
         // , + . = ー（長音符/マイナス）
-
         combo_minus {
             bindings = <&kp MINUS>;
             key-positions = <31 32>;
         };
 
         // S + D = Alt + Tab (アプリ切り替え)
-
         combo_alttab {
             bindings = <&kp LA(TAB)>;
             key-positions = <11 12>;
         };
 
         // I + O = Delete (右側の文字を消す)
-
         combo_del {
             bindings = <&kp DELETE>;
             key-positions = <7 8>;
@@ -101,6 +96,43 @@
             bindings = <&kp LS(A) &kp N2 &kp N9 &kp N5 &kp X &kp P>;
             label = "MACRO_D";
         };
+
+        // ▼ 今回追加した Bluetooth + レイヤー移動マクロ ▼
+        bt0_jis: bt0_jis {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0 &to 0>;
+            label = "BT0_JIS";
+        };
+
+        bt1_us: bt1_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1 &to 9>;
+            label = "BT1_US";
+        };
+
+        bt2_us: bt2_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 2 &to 9>;
+            label = "BT2_US";
+        };
+
+        bt3_us: bt3_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 3 &to 9>;
+            label = "BT3_US";
+        };
+
+        bt4_us: bt4_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 4 &to 9>;
+            label = "BT4_US";
+        };
+        // ▲ ここまで ▲
     };
 
     /* --- 3. 挙動(Behaviors)設定 --- */
@@ -136,8 +168,8 @@
             bindings = <
 &kp Q                 &kp W         &kp E     &kp R     &kp T                                          &kp Y        &kp U  &kp I        &kp O    &kp P
 &kp A                 &kp S         &kp D     &kp F     &kp G        &kp LS(LG(S))      &kp DELETE     &kp H        &kp J  &lt 5 K      &kp L    &mt RIGHT_CONTROL MINUS
-&mt LSHIFT Z          &kp X         &kp C     &kp V     &kp B        &kp LEFT_WIN       &lt 6 ESCAPE   &kp N        &kp M  &lt 4 COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
-&mt LCTRL LANGUAGE_2  &kp LEFT_ALT  &mkp MB2  &mkp MB1  &lt 3 SPACE  &lt 8 TAB          &kp BACKSPACE  &lt 1 ENTER                               &mt RIGHT_ALT LANGUAGE_1
+&mt LSHIFT Z          &kp X         &kp C     &kp V     &kp B        &kp LEFT_WIN       &lt 6 ESCAPE   &kp N        &kp M  &lt 5 COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&mt LCTRL LANGUAGE_2  &kp LEFT_ALT  &mkp MB2  &mkp MB1  &lt 4 SPACE  &lt 8 TAB          &kp BACKSPACE  &lt 1 ENTER                               &mt RIGHT_ALT LANGUAGE_1
             >;
 
             sensor-bindings = <&encoder_msc_down_up>;
@@ -145,10 +177,10 @@
 
         NUM {
             bindings = <
-&kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS                                                 &kp SLASH     &kp F2          &kp UP_ARROW  &kp F4     &kp MINUS
-&kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp LS(SEMICOLON)  &kp LC(LA(KP_N0))      &kp UNDERSCORE  &kp ASTERISK  &kp LEFT_ARROW  &kp DOWN      &kp RIGHT  &kp RS(SEMICOLON)
-&trans        &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans             &kp EQUAL              &trans          &trans        &kp F7          &kp F8        &trans     &trans
-&trans        &trans        &trans        &kp NUMBER_0  &trans             &trans                 &trans          &trans                                                 &trans
+&kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS                                                 &kp SLASH       &kp F2          &kp UP_ARROW  &kp F4      &kp MINUS
+&kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp LS(SEMICOLON)  &kp LC(LA(KP_N0))      &kp UNDERSCORE  &kp ASTERISK    &kp LEFT_ARROW  &kp DOWN      &kp RIGHT   &kp RS(SEMICOLON)
+&trans        &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans             &kp EQUAL              &trans          &trans          &kp F7          &kp F8        &trans      &trans
+&trans        &trans        &trans        &kp NUMBER_0  &trans             &trans                 &trans          &trans                                                    &trans
             >;
         };
 
@@ -163,10 +195,10 @@
 
         ARROW {
             bindings = <
-&kp PAGE_UP    &kp F2    &kp UP_ARROW  &kp F4        &kp MINUS                         &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
+&kp PAGE_UP    &kp F2    &kp UP_ARROW  &kp F4        &kp MINUS                                 &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
 &kp PAGE_DOWN  &mkp MB3  &mkp MB2      &mkp MB1      &kp LS(SEMI)  &trans      &trans  &kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp COLON
 &kp NUMBER_0   &kp F7    &kp F8        &kp F11       &trans        &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0
-&trans         &trans    &trans        &kp NUMBER_0  &trans        &trans      &trans  &kp NUMBER_0                                            &trans
+&trans         &trans    &trans        &kp NUMBER_0  &trans        &trans      &trans  &kp NUMBER_0                                                    &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -177,7 +209,7 @@
 &trans     &mkp MB2   &kp UP    &kp F4     &trans                      &trans  &trans    &trans  &trans    &trans
 &mkp MB4   &mkp MB2   &mo 5     &mkp MB1   &trans  &trans      &trans  &trans  &mkp MB2  &trans  &mkp MB4  &mt RIGHT_CONTROL MINUS
 &kp RC(Z)  &kp RC(X)  &kp DOWN  &kp RC(V)  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mkp MB2  &mkp MB4
-&trans     &trans     &trans    &trans     &trans  &trans      &trans  &trans                              &trans
+&trans     &trans     &trans    &trans     &trans  &trans      &trans  &trans                                &trans
             >;
         };
 
@@ -192,10 +224,12 @@
 
         SYSTEM {
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                           &trans  &trans  &trans  &trans  &trans
-&trans        &macro_s        &macro_d      &macro_s      &trans        &trans      &trans       &trans  &trans  &trans  &trans  &trans
-&bt BT_CLR    &bt BT_CLR_ALL  &kp N2        &kp N3        &trans        &trans      &bootloader  &trans  &trans  &trans  &trans  &trans
-&trans        &trans          &trans        &trans        &trans        &trans      &trans       &trans                          &trans
+// ▼ ここを新しいマクロに差し替えました ▼
+&bt0_jis    &bt1_us         &bt2_us       &bt3_us       &bt4_us                                    &trans  &trans  &trans  &trans  &trans
+// ▲ ここまで ▲
+&trans      &macro_s        &macro_d      &macro_s      &trans        &trans      &trans           &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR  &bt BT_CLR_ALL  &kp N2        &kp N3        &trans        &trans      &bootloader      &trans  &trans  &trans  &trans  &trans
+&trans      &trans          &trans        &trans        &trans        &trans      &trans           &trans                          &trans
             >;
         };
 
@@ -204,7 +238,7 @@
 &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT                      &kp LCTRL  &kp AMPS     &kp LPAR  &kp RPAR  &kp EQUAL
 &trans    &trans  &trans    &trans    &trans     &trans      &trans  &kp TILDE  &kp RS(SQT)  &kp LBKT  &kp RBKT  &kp MINUS
 &trans    &trans  &trans    &trans    &trans     &trans      &trans  &kp DQT    &kp DQT      &kp LT    &kp GT    &kp QUESTION
-&trans    &trans  &trans    &trans    &trans     &trans      &trans  &trans                                      &trans
+&trans    &trans  &trans    &trans    &trans     &trans      &trans  &trans                                        &trans
             >;
         };
 
@@ -217,12 +251,12 @@
             >;
         };
 
-        US_DEFO {
+        us_defo {
             bindings = <
-&kp ESCAPE        &mt LEFT_WIN W    &kp E               &kp R             &kp T                                                        &kp Y                   &kp U  &kp I      &kp O    &kp P
-&kp A             &mt LEFT_SHIFT S  &mt LEFT_CONTROL D  &kp F             &kp G        &kp LS(LG(S))                    &kp DELETE     &kp H                   &kp J  &kp K      &kp L    &mt RIGHT_CONTROL MINUS
-&mt LEFT_SHIFT Z  &kp X             &kp C               &kp V             &kp B        &kp Q                            &kp SEMICOLON  &kp N                   &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
-&kp TAB           &kp LEFT_ALT      &kp LEFT_ALT        &lt 6 LANGUAGE_2  &lt 4 SPACE  &lt_to_layer_0 7 LANGUAGE_1      &kp BACKSPACE  &lt_to_layer_0 3 ENTER                             &kp RIGHT_ALT
+&kp Q                 &kp W         &kp E     &kp R     &kp T                                          &kp Y        &kp U  &kp I        &kp O    &kp P
+&kp A                 &kp S         &kp D     &kp F     &kp G        &kp LS(LG(S))      &kp DELETE     &kp H        &kp J  &lt 5 K      &kp L    &mt RIGHT_CONTROL MINUS
+&mt LSHIFT Z          &kp X         &kp C     &kp V     &kp B        &kp LEFT_WIN       &lt 6 ESCAPE   &kp N        &kp M  &lt 5 COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&mt LCTRL LANGUAGE_2  &kp LEFT_ALT  &mkp MB2  &mkp MB1  &lt 4 SPACE  &lt 7 TAB          &kp BACKSPACE  &lt 1 ENTER                               &mt RIGHT_ALT LANGUAGE_1
             >;
 
             sensor-bindings = <&encoder_msc_down_up>;
