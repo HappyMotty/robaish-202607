@@ -3,56 +3,55 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
+/* --- レイヤー番号の定義（優先度順） --- */
+#define DEF   0
+#define US_D  1
+#define NUM   2
+#define FUNC  3
+#define ARR   4
+#define MOU   5
+#define SCR   6
+#define SYS   7
+#define US_M  8
+#define JIS_M 9
+
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
 };
 
 &trackball {
-    automouse-layer = <4>;
-    scroll-layers = <5>;
-
-    // arrows {
-    //     layers = <3>;
-    //     bindings =
-    //         <&kp RIGHT_ARROW>,
-    //         <&kp LEFT_ARROW>,
-    //         <&kp UP_ARROW>,
-    //         <&kp DOWN_ARROW>;
-
-    //     tick = <10>;
-    //     wait-ms = <5>;
-    //     tap-ms = <5>;
-    // };
+    scroll-layers = <SCR>;
+    snipe-layers = <MOU>;
 };
 
 / {
     combos {
         compatible = "zmk,combos";
 
-        tab {
-            bindings = <&kp TAB>;
+        combo_esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 1>;
+        };
+
+        combo_click {
+            bindings = <&mkp MB1>;
+            key-positions = <13 14>;
+        };
+
+        combo_minus {
+            bindings = <&kp MINUS>;
+            key-positions = <31 32>;
+        };
+
+        combo_alttab {
+            bindings = <&kp LA(TAB)>;
             key-positions = <11 12>;
         };
 
-        shift_tab {
-            bindings = <&kp LS(TAB)>;
-            key-positions = <12 13>;
-        };
-
-        muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 10>;
-        };
-
-        double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
-        };
-
-        eq {
-            bindings = <&kp EQUAL>;
-            key-positions = <24 25>;
+        combo_del {
+            bindings = <&kp DELETE>;
+            key-positions = <7 8>;
         };
     };
 
@@ -63,6 +62,69 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
+
+        macro_s: macro_s {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp H &kp O &kp N &kp N &kp A &kp D &kp A &kp I>;
+            label = "MACRO_S";
+        };
+
+        macro_d: macro_d {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp LS(A) &kp N2 &kp N9 &kp N5 &kp X &kp P>;
+            label = "MACRO_D";
+        };
+
+        bt0_jis: bt0_jis {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&bt BT_SEL 0 &to 0>;
+            label = "BT0_JIS";
+        };
+
+        bt1_us: bt1_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&bt BT_SEL 1 &to 1>;
+            label = "BT1_US";
+        };
+
+        bt2_us: bt2_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&bt BT_SEL 2 &to 1>;
+            label = "BT2_US";
+        };
+
+        bt3_us: bt3_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&bt BT_SEL 3 &to 1>;
+            label = "BT3_US";
+        };
+
+        bt4_us: bt4_us {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&bt BT_SEL 4 &to 1>;
+            label = "BT4_US";
+        };
     };
 
     behaviors {
@@ -70,9 +132,22 @@
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
             bindings = <&mo>, <&to_layer_0>;
-
             #binding-cells = <2>;
             tapping-term-ms = <200>;
+        };
+
+        /* 最新版専用のネイティブスクロール */
+        scroll_encoder: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+        };
+
+        /* 安全なPageUp/Downスクロール */
+        page_encoder: page_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&kp LC(PAGE_DOWN)>, <&kp LC(PAGE_UP)>;
         };
     };
 
@@ -81,50 +156,59 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                        &kp T                                                          &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                        &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &lt 2 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp Q                        &kp W         &kp E         &kp R      &kp T                                                          &kp Y        &kp U  &kp I        &kp O    &kp P
+&kp A                        &kp S         &kp D         &kp F      &kp G        &kp LS(LG(S))      &kp DELETE     &kp H        &kp J  &lt 6 K      &kp L    &mt RIGHT_CONTROL MINUS
+&mt LSHIFT Z                 &kp X         &kp C         &kp V      &kp B        &mkp MB2           &lt 7 ESCAPE   &kp N        &kp M  &lt 5 COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&mt LEFT_CONTROL LANGUAGE_2  &kp LEFT_ALT  &kp LEFT_WIN  &lt 9 TAB  &lt 3 SPACE  &mkp MB1           &kp BACKSPACE  &lt 2 ENTER                              &mt RIGHT_ALT LANGUAGE_1
             >;
-
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            sensor-bindings = <&scroll_encoder>;
         };
 
-        FUNCTION {
+        us_defo {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                       &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
-&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
+&kp Q                        &kp W         &kp E         &kp R      &kp T                                                          &kp Y        &kp U  &kp I        &kp O    &kp P
+&kp A                        &kp S         &kp D         &kp F      &kp G        &kp LS(LG(S))      &kp DELETE     &kp H        &kp J  &lt 6 K      &kp L    &mt RIGHT_CONTROL MINUS
+&mt LSHIFT Z                 &kp X         &kp C         &kp V      &kp B        &mkp MB2           &lt 7 ESCAPE   &kp N        &kp M  &lt 5 COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
+&mt LEFT_CONTROL LANGUAGE_2  &kp LEFT_ALT  &kp LEFT_WIN  &lt 8 TAB  &lt 4 SPACE  &mkp MB1           &kp BACKSPACE  &lt 2 ENTER                              &mt RIGHT_ALT LANGUAGE_1
             >;
-        };
-
-        NUM {
-            bindings = <
-&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS                                                   &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
-&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
-&trans                      &trans           &trans           &trans           &trans        &trans                       &trans          &trans                                                                     &kp PIPE
-            >;
+            sensor-bindings = <&scroll_encoder>;
         };
 
         ARROW {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans  &trans  &trans  &trans  &trans
-&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
+&trans  &kp F2  &trans  &kp F4  &trans                       &kp RS(RG(LEFT))  &kp F2    &kp UP    &kp F4     &kp RS(RG(RIGHT))
+&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp RA(LEFT)      &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+&trans  &kp F7  &kp F8  &trans  &trans  &trans      &trans   &trans            &kp F7    &trans    &kp F8     &kp F11
+&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                                           &kp F12
             >;
+        };
 
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+        NUM_JIS {
+            bindings = <
+&kp PAGE_UP   &kp F2    &kp UP_ARROW  &kp F4        &kp MINUS                         &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
+&mkp MB3      &mkp MB2  &mo 6         &mkp MB1      &kp LS(SEMI)  &trans      &trans  &kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp COLON
+&kp NUMBER_0  &kp F7    &kp F8        &kp F11       &trans        &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0
+&trans        &trans    &trans        &kp NUMBER_0  &trans        &trans      &trans  &kp NUMBER_0                                            &trans
+            >;
+            sensor-bindings = <&page_encoder>;
+        };
+
+        NUM_US {
+            bindings = <
+&kp PAGE_UP   &kp F2    &kp UP_ARROW  &kp F4        &kp MINUS                         &kp SLASH     &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp MINUS
+&mkp MB3      &mkp MB2  &mo 6         &mkp MB1      &kp LS(SEMI)  &trans      &trans  &kp ASTERISK  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp PLUS
+&kp NUMBER_0  &kp F7    &kp F8        &kp F11       &trans        &trans      &trans  &kp PERIOD    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_0
+&trans        &trans    &trans        &kp NUMBER_0  &trans        &trans      &trans  &kp NUMBER_0                                            &trans
+            >;
+            sensor-bindings = <&page_encoder>;
         };
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
+&trans     &mkp MB2   &kp UP    &kp F4     &trans                      &trans  &trans    &trans  &trans    &trans
+&mkp MB4   &mkp MB2   &mo 6     &mkp MB1   &trans  &trans      &trans  &trans  &mkp MB2  &trans  &mkp MB4  &mt RIGHT_CONTROL MINUS
+&kp RC(Z)  &kp RC(X)  &kp DOWN  &kp RC(V)  &trans  &trans      &trans  &trans  &mkp MB1  &trans  &mkp MB2  &mkp MB4
+&trans     &trans     &trans    &trans     &trans  &trans      &trans  &trans                              &trans
             >;
         };
 
@@ -137,12 +221,30 @@
             >;
         };
 
-        layer_6 {
+        SYSTEM {
             bindings = <
-&trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
+&bt0_jis    &bt1_us         &bt2_us   &bt3_us   &bt4_us                                  &trans  &trans  &trans  &trans  &trans
+&trans      &macro_s        &macro_d  &macro_s  &trans   &trans      &trans       &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR  &bt BT_CLR_ALL  &kp N2    &kp N3    &trans   &trans      &bootloader  &trans  &trans  &trans  &trans  &trans
+&trans      &trans          &trans    &trans    &trans   &trans      &trans       &trans                          &trans
+            >;
+        };
+
+        US_MAP {
+            bindings = <
+&kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT                      &kp LCTRL  &kp AMPS     &kp LPAR  &kp RPAR  &kp EQUAL
+&trans    &trans  &trans    &trans    &trans     &trans      &trans  &kp TILDE  &kp RS(SQT)  &kp LBKT  &kp RBKT  &kp MINUS
+&trans    &trans  &trans    &trans    &trans     &trans      &trans  &kp DQT    &kp DQT      &kp LT    &kp GT    &kp QUESTION
+&trans    &trans  &trans    &trans    &trans     &trans      &trans  &trans                                      &trans
+            >;
+        };
+
+        JIS_MAP {
+            bindings = <
+&kp EXCL  &kp LBKT  &kp HASH  &kp DLLR  &kp PRCNT                      &kp UNDERSCORE  &kp SQT   &kp STAR  &kp LPAR  &kp RS(MINUS)
+&kp ESC   &trans    &macro_s  &macro_d  &macro_s   &trans      &trans  &kp AMPS        &kp SQT   &kp RBKT  &kp BSLH  &kp RS(INT1)
+&trans    &trans    &trans    &trans    &macro_d   &trans      &trans  &kp AT          &kp PLUS  &kp PLUS  &kp SQT   &kp RS(QUESTION)
+&trans    &trans    &trans    &trans    &trans     &trans      &trans  &trans                                        &trans
             >;
         };
     };
