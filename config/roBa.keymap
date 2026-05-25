@@ -109,10 +109,10 @@
 
         Onishi_layer {
             bindings = <
-&kp Q             &kp L         &kp U         &kp COMMA             &kp DOT                                                                    &kp F        &kp W  &kp R  &kp Y  &kp P
-&mt LCTRL E       &kp I         &kp A         &kp O                 &kp FSLH              &kp ESCAPE                      &kp MINUS            &kp K        &kp T  &kp N  &kp S  &kp H
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                 &kp SEMI              &to 0                           &kp EQUAL            &kp G        &kp D  &kp M  &kp Z  &kp B
-&kp LCTRL         &kp LEFT_GUI  &kp LEFT_ALT  &lt_to_layer_0 3 F10  &mt LEFT_SHIFT SPACE  &lt_to_layer_0 5 LC(SPACE)      &mt LCTRL BACKSPACE  &lt 2 ENTER                       &kp J
+&kp Q             &kp L         &kp U         &kp COMMA             &kp DOT                                                                       &kp F        &kp W  &kp R  &kp Y  &kp P
+&kp E             &kp I         &kp A         &kp O                 &kp FSLH              &kp ESCAPE                      &kp MINUS               &kp K        &kp T  &kp N  &kp S  &kp H
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                 &kp SEMI              &to 0                           &kp EQUAL               &kp G        &kp D  &kp M  &kp J  &kp B
+&kp LCTRL         &kp LEFT_GUI  &kp LEFT_ALT  &lt_to_layer_0 3 F10  &mt LEFT_SHIFT SPACE  &lt_to_layer_0 5 LC(SPACE)      &mt LEFT_GUI BACKSPACE  &lt 2 ENTER                       &kp LCTRL
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -138,10 +138,10 @@
 
         ARROWandMOUSE {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                          &kp LC(T)        &trans    &mkp MB3  &trans  &trans
-&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &kp LC(V)  &kp LC(LS(TAB))  &mkp MB1  &mkp MB2  &trans  &kp LC(TAB)
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &kp LC(C)  &trans           &mkp MB4  &mkp MB5  &trans  &trans
-&trans          &trans                  &trans          &trans                   &trans   &trans      &trans     &trans                                       &trans
+&trans  &trans  &trans  &trans  &trans                         &kp LC(T)  &trans    &mkp MB3  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &kp LC(V)  &trans     &mkp MB1  &mkp MB2  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &kp LC(C)  &trans     &mkp MB4  &mkp MB5  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans     &trans                                 &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
