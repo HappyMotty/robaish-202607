@@ -35,6 +35,34 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
+
+        BT0Mac: BT0Mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0 &to 0>;
+            label = "BT0MAC";
+        };
+
+        BT1Mac: BT1Mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1 &to 0>;
+            label = "BT1MAC";
+        };
+
+        BT2Win: BT2Win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 2 &to 1>;
+            label = "BT2WIN";
+        };
+
+        BT3Win: BT3Win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 3 &to 1>;
+            label = "BT3WIN";
+        };
     };
 
     behaviors {
@@ -104,10 +132,10 @@
 
         bluetooth {
             bindings = <
-&trans      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3                      &trans  &trans  &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&bt BT_CLR  &trans        &trans        &trans        &trans        &trans      &trans  &trans                          &trans
+&trans      &BT0Mac  &BT1Mac  &BT2Win  &BT3Win                      &trans  &trans  &trans  &trans  &trans
+&trans      &trans   &trans   &trans   &trans   &trans      &trans   &trans  &trans  &trans  &trans  &trans
+&trans      &trans   &trans   &trans   &trans   &trans      &trans   &trans  &trans  &trans  &trans  &trans
+&bt BT_CLR  &trans   &trans   &trans   &trans   &trans      &trans   &trans                          &trans
             >;
         };
 
