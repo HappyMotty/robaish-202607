@@ -1,27 +1,47 @@
-# This file generates the GitHub Actions matrix.
-# For simple board + shield combinations, add them to the top level board and
-# shield arrays, for more control, add individual board + shield combinations
-# to the `include` property. You can also use the `cmake-args` property to
-# pass flags to the build command and `artifact-name` to assign a name to
-# distinguish build outputs from each other:
-#
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#   - board: nice_nano_v2
-#     shield: corne_left
-#     cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
-#     artifact-name: corne_left_with_logging
-#
 ---
 include:
- - board: seeeduino_xiao_ble
-   shield: roBa_R
-   snippet: studio-rpc-usb-uart
- - board: seeeduino_xiao_ble
-   shield: roBa_L
- - board: seeeduino_xiao_ble
-   shield: settings_reset
+  # ========================================
+  # 通常モード（ドングルなし）
+  # ========================================
+  - board: seeeduino_xiao_ble
+    shield: roBa_R
+    snippet: studio-rpc-usb-uart
+    artifact-name: roBa_R
+
+  - board: seeeduino_xiao_ble
+    shield: roBa_L
+    artifact-name: roBa_L
+
+  # ========================================
+  # ドングルモード — ペリフェラル
+  # ========================================
+  - board: seeeduino_xiao_ble
+    shield: roBa_L_peripheral
+    artifact-name: roBa_L_peripheral
+
+  - board: seeeduino_xiao_ble
+    shield: roBa_R_peripheral
+    artifact-name: roBa_R_peripheral
+
+  # ========================================
+  # ドングルモード — セントラル (XIAO BLE)
+  # ========================================
+  - board: seeeduino_xiao_ble
+    shield: roBa_dongle
+    snippet: studio-rpc-usb-uart
+    artifact-name: roBa_dongle_xiao
+
+  # ========================================
+  # ドングルモード — セントラル (Prospector LCD付き)
+  # ========================================
+  - board: seeeduino_xiao_ble
+    shield: roBa_dongle prospector_adapter
+    snippet: studio-rpc-usb-uart
+    artifact-name: roBa_dongle_prospector
+
+  # ========================================
+  # settings_reset
+  # ========================================
+  - board: seeeduino_xiao_ble
+    shield: settings_reset
+    artifact-name: settings_reset

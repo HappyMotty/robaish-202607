@@ -1,0 +1,51 @@
+#include "roBa.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
+// Dongle has no physical keys — disable matrix kscan and use a stub
+&kscan0 {
+    status = "disabled";
+};
+
+/ {
+    chosen {
+        zmk,kscan = &kscan_stub;
+    };
+
+    // Single always-low GPIO acts as a stub kscan (dongle has no keys)
+    kscan_stub: kscan_stub {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+    };
+
+    tb_scaler: tb_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_X INPUT_REL_Y>;
+        track-remainders;
+    };
+
+    tb_temp_layer: tb_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        excluded-positions = <6 8 18 19 20 21 30 32>;
+    };
+
+    // Receives trackball input forwarded from right peripheral
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_central: trackball_central@0 {
+            compatible = "zmk,split-input-central";
+            reg = <0>;
+        };
+    };
+
+    trackball_listener {
+        status = "okay";
+        compatible = "zmk,input-listener";
+        device = <&trackball_central>;
+        input-processors = <&tb_scaler 2 1>, <&tb_temp_layer 6 5000>;
+    };
+};

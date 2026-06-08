@@ -20,3 +20,39 @@ config ZMK_SPLIT
     default y
 
 endif
+
+if SHIELD_ROBA_DONGLE
+
+config ZMK_KEYBOARD_NAME
+    default "roBa"
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+config ZMK_SPLIT_BLE_PERIPHERAL_COUNT
+    default 2
+
+endif
+
+if SHIELD_ROBA_L_PERIPHERAL
+
+config ZMK_KEYBOARD_NAME
+    default "roBa_L"
+
+config ZMK_SPLIT
+    default y
+
+endif
+
+if SHIELD_ROBA_R_PERIPHERAL
+
+config ZMK_KEYBOARD_NAME
+    default "roBa_R"
+
+config ZMK_SPLIT
+    default y
+
+endif

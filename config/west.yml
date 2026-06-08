@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
+    - name: joelspadin
+      url-base: https://github.com/joelspadin
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -11,6 +13,9 @@ manifest:
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: kumamuk-git
+      revision: main
+    - name: prospector-zmk-module
+      remote: joelspadin
       revision: main
   self:
     path: config
