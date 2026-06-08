@@ -4,8 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: kumamuk-git
       url-base: https://github.com/kumamuk-git
-    - name: joelspadin
-      url-base: https://github.com/joelspadin
+    - name: happy-ryo
+      url-base: https://github.com/happy-ryo
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -15,7 +15,7 @@ manifest:
       remote: kumamuk-git
       revision: main
     - name: prospector-zmk-module
-      remote: joelspadin
-      revision: main
+      remote: happy-ryo
+      revision: fix/battery-bar-display-A-character
   self:
     path: config
