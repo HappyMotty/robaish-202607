@@ -32,9 +32,6 @@ config ZMK_SPLIT
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
-config ZMK_SPLIT_BLE_PERIPHERAL_COUNT
-    default 2
-
 endif
 
 if SHIELD_ROBA_L_PERIPHERAL
