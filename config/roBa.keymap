@@ -100,7 +100,7 @@
 
         Mark {
             bindings = <
-&trans  &trans         &trans            &trans          &trans                                                             &trans                 &trans           &trans             &trans            &trans
+&trans  &trans         &trans            &trans          &trans                                                             &trans                 &trans           &trans             &kp TILDE         &trans
 &trans  &kp PIPE       &kp AMPERSAND     &kp EXCL        &kp QUESTION          &kp LC(LA(KP_NUMBER_0))      &kp LEFT_ARROW  &kp DOWN_ARROW         &kp UP_ARROW     &kp RIGHT          &kp UNDERSCORE    &trans
 &trans  &kp LESS_THAN  &kp LEFT_BRACKET  &kp LEFT_BRACE  &kp LEFT_PARENTHESIS  &kp SQT                      &kp DQT         &kp RIGHT_PARENTHESIS  &kp RIGHT_BRACE  &kp RIGHT_BRACKET  &kp GREATER_THAN  &trans
 &trans  &trans         &trans            &trans          &trans                &trans                       &trans          &trans                                                                       &trans
