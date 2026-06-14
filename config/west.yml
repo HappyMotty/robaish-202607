@@ -2,15 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: Awoofy
+    - name: myfork
       url-base: https://github.com/Awoofy
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3-branch
+      revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: Awoofy
+      remote: myfork
       revision: main
   self:
     path: config
