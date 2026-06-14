@@ -93,7 +93,7 @@
             bindings = <
 &trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3                           &kp BACKSLASH  &trans      &trans        &trans         &trans
 &trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans         &kp HASH  &kp SLASH      &kp EQUAL   &kp ASTERISK  &kp PLUS       &kp AT
-&trans  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp GRAVE      &trans    &kp PERCENT    &kp PERIOD  &kp COLON     &kp SEMICOLON  &trans
+&trans  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp GRAVE      &kp RGUI  &kp PERCENT    &kp PERIOD  &kp COLON     &kp SEMICOLON  &trans
 &trans  &trans  &kp NUMBER_0  &trans        &trans        &trans         &trans    &trans                                                  &trans
             >;
         };
