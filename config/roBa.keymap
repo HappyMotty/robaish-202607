@@ -83,8 +83,8 @@
         Device {
             bindings = <
 &trans  &trans  &kp LC(NUMBER_1)  &kp LC(NUMBER_2)  &kp LC(NUMBER_3)                      &bt BT_SEL 0       &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3       &bt BT_SEL 4
-&trans  &trans  &kp LC(NUMBER_4)  &kp LC(NUMBER_5)  &kp LC(NUMBER_6)  &trans      &trans  &kp LS(LC(LG(H)))  &kp RG(LC(F))      &kp LS(LC(LG(K)))  &kp LS(LG(LC(L)))  &trans
-&trans  &trans  &kp LC(NUMBER_7)  &kp LC(NUMBER_8)  &kp LC(NUMBER_9)  &trans      &gmail  &kp K_MUTE         &kp C_VOLUME_DOWN  &kp C_VOLUME_UP    &trans             &trans
+&trans  &trans  &kp LC(NUMBER_4)  &kp LC(NUMBER_5)  &kp LC(NUMBER_6)  &trans      &gmail  &kp LS(LC(LG(H)))  &kp RG(LC(F))      &kp LS(LC(LG(K)))  &kp LS(LG(LC(L)))  &trans
+&trans  &trans  &kp LC(NUMBER_7)  &kp LC(NUMBER_8)  &kp LC(NUMBER_9)  &trans      &trans  &kp K_MUTE         &kp C_VOLUME_DOWN  &kp C_VOLUME_UP    &trans             &trans
 &trans  &trans  &trans            &trans            &trans            &trans      &trans  &trans                                                                      &trans
             >;
 
