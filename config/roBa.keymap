@@ -80,10 +80,10 @@
 
         default_layer {
             bindings = <
-&kp Q      &kp W         &kp E         &kp R      &kp T                                                    &kp Y        &kp U  &kp I      &kp O    &kp P
-&kp A      &kp S         &kp D         &kp F      &kp G        &trans               &kp CARET              &kp H        &kp J  &kp K      &kp L    &mt RIGHT_COMMAND MINUS
-&kp Z      &kp X         &kp C         &kp V      &kp B        &mt LCTRL LANG2      &mt RIGHT_SHIFT LANG1  &kp N        &kp M  &kp COMMA  &kp DOT  &kp DOLLAR
-&kp CARET  &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 TAB  &lt 2 SPACE  &kp ESCAPE           &kp BACKSPACE          &lt 2 ENTER                             &kp NON_US_BACKSLASH
+&kp Q      &kp W         &kp E         &kp R      &kp T                                                            &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp A      &kp S         &kp D         &kp F      &kp G        &trans                     &kp CARET                &kp H        &kp J  &kp K      &kp L    &mt RIGHT_COMMAND MINUS
+&kp Z      &kp X         &kp C         &kp V      &kp B        &mt LCTRL LANG2            &mt RIGHT_COMMAND LANG1  &kp N        &kp M  &kp COMMA  &kp DOT  &kp DOLLAR
+&kp CARET  &kp LEFT_WIN  &kp LEFT_ALT  &lt 3 TAB  &lt 2 SPACE  &mt LEFT_SHIFT ESCAPE      &kp BACKSPACE            &lt 2 ENTER                             &caps_word
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_DOWN PAGE_UP>;
@@ -92,8 +92,8 @@
         Num {
             bindings = <
 &trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3                         &kp BACKSLASH  &trans      &trans        &trans         &trans
-&trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans         &trans  &kp SLASH      &kp EQUAL   &kp ASTERISK  &kp PLUS       &trans
-&trans  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp GRAVE      &kp AT  &kp PERCENT    &kp PERIOD  &kp COLON     &kp SEMICOLON  &trans
+&trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans         &trans  &kp SLASH      &kp EQUAL   &kp ASTERISK  &kp PLUS       &kp AT
+&trans  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp GRAVE      &trans  &kp PERCENT    &kp PERIOD  &kp COLON     &kp SEMICOLON  &trans
 &trans  &trans  &kp NUMBER_0  &trans        &trans        &trans         &trans  &trans                                                  &trans
             >;
         };
