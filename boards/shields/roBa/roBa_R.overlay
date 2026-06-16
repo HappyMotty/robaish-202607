@@ -1,4 +1,5 @@
 #include "roBa.dtsi"
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -15,10 +16,21 @@
 };
 
 / {
+    // マウススクロール量を調整するためのスケーラー
+    // <倍率 除数> = <1 2> でスクロール量を半分に。除数を増やすほど少なくなる
+    scroll_scaler: scroll_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        track-remainders;
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        input-processors = <&scroll_scaler 1 2>;
     };
 };
 
