@@ -7,7 +7,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3-branch          # ← main から v0.3-branch に戻す（今回の修正点）
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: myfork
