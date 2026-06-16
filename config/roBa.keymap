@@ -64,12 +64,17 @@
         // もっと大きく動かしたい時は #include 群の前に
         //   #define ZMK_MOUSE_DEFAULT_SCRL_VAL <値>
         // を追加する。
+
         scroll_up_down: scroll_up_down {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
             tap-ms = <20>;
         };
+    };
+
+    behaviors {
     };
 
     keymap {
@@ -80,10 +85,11 @@
 &kp Q      &kp W        &kp E         &kp R      &kp T                                                            &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A      &kp S        &kp D         &kp F      &kp G        &trans                     &kp CARET                &kp H        &kp J  &kp K      &kp L    &mt RIGHT_COMMAND MINUS
 &kp Z      &kp X        &kp C         &kp V      &kp B        &mt LCTRL LANG2            &mt RIGHT_COMMAND LANG1  &kp N        &kp M  &kp COMMA  &kp DOT  &kp DOLLAR
-&kp CARET  &tmux_vmode  &kp LEFT_ALT  &lt 3 TAB  &lt 2 SPACE  &mt LEFT_SHIFT ESCAPE      &kp BACKSPACE            &lt 1 ENTER                             &kp BACKSLASH
+&kp CARET  &tmux_vmode  &kp LEFT_ALT  &lt 3 TAB  &lt 2 SPACE  &mt LEFT_SHIFT ESCAPE      &kp BACKSPACE            &lt 1 ENTER                             &lt 5 BACKSLASH
             >;
 
             // エンコーダ: マウスホイールスクロール（旧: &inc_dec_kp PAGE_DOWN PAGE_UP）
+
             sensor-bindings = <&scroll_up_down>;
         };
 
@@ -133,6 +139,7 @@
         //   例) 押している間だけスクロール:  &mo 5
         //   例) タップ=元の文字 / ホールド=スクロール:  &lt 5 <KEY>
         // 中身は全て &trans なので、スクロール中も下位レイヤーのキーがそのまま使えます。
+
         SCROLL {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
