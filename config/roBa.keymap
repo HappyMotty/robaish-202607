@@ -1,16 +1,19 @@
+// US配列前提のキーコードを、JIS配列設定のOS(Windows)向けに実行時変換する。
+// &kp をグローバルに上書きするので既存キーマップはそのまま使える。
+// （必ず behaviors.dtsi など他の include より下に置くこと）
+
+#include <layout_shift_kp_override.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// US配列前提のキーコードを、JIS配列設定のOS(Windows)向けに実行時変換する。
-// &kp をグローバルに上書きするので既存キーマップはそのまま使える。
-// （必ず behaviors.dtsi など他の include より下に置くこと）
-#include <layout_shift_kp_override.dtsi>
-
 // トグルが制御するレイアウトマップ = US -> JIS のみ
-&tog_ls     { layout-maps = <&layout_shift_map_us_to_jis>; };
-&tog_ls_on  { layout-maps = <&layout_shift_map_us_to_jis>; };
+
+&tog_ls { layout-maps = <&layout_shift_map_us_to_jis>; };
+
+&tog_ls_on { layout-maps = <&layout_shift_map_us_to_jis>; };
+
 &tog_ls_off { layout-maps = <&layout_shift_map_us_to_jis>; };
 
 &mt {
@@ -49,17 +52,18 @@
         // BTプロファイル切替と同時にレイアウトシフト(US/JIS)を切り替える。
         // mac    = プロファイル1(BT_SEL 0) → US(レイアウトシフトOFF)
         // Windows = プロファイル5(BT_SEL 4) → JIS(レイアウトシフトON)
+
         bt_mac: bt_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0>, <&tog_ls_off>;
+            bindings = <&bt BT_SEL 0 &tog_ls_off>;
             label = "BT_MAC";
         };
 
         bt_win: bt_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 4>, <&tog_ls_on>;
+            bindings = <&bt BT_SEL 4 &tog_ls_on>;
             label = "BT_WIN";
         };
 
@@ -111,7 +115,7 @@
             bindings = <
 &kp Q        &kp W          &kp E       &kp R       &kp T                                                            &kp Y        &kp U  &kp I      &kp O    &kp P
 &kp A        &kp S          &kp D       &kp F       &kp G        &lt 5 TAB                  &kp CARET                &kp H        &kp J  &kp K      &kp L    &mt RIGHT_COMMAND MINUS
-&kp Z        &kp X          &kp C       &kp V       &kp B        &mt LCTRL LANG2            &mt RIGHT_COMMAND LANG1  &kp N        &kp M  &kp COMMA  &kp DOT  &kp DOLLAR
+&kp Z        &kp X          &kp C       &kp V       &kp B        &mt LCTRL LANG2            &mt RIGHT_COMMAND LANG1  &kp N        &kp M  &kp COMMA  &kp DOT  &kp DLLR
 &coment_out  &kp BACKSLASH  &caps_word  &lt 3 HASH  &lt 2 SPACE  &mt LEFT_SHIFT ESCAPE      &kp BACKSPACE            &lt 1 ENTER                             &kp UNDERSCORE
             >;
 
@@ -139,9 +143,9 @@
         Device {
             bindings = <
 &tog_ls  &trans  &kp LC(NUMBER_1)  &kp LC(NUMBER_2)  &kp LC(NUMBER_3)                      &bt_mac            &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3       &bt_win
-&trans  &trans  &kp LC(NUMBER_4)  &kp LC(NUMBER_5)  &kp LC(NUMBER_6)  &trans      &gmail  &kp LS(LC(LG(H)))  &kp RG(LC(F))      &kp LS(LC(LG(K)))  &kp LS(LG(LC(L)))  &trans
-&trans  &trans  &kp LC(NUMBER_7)  &kp LC(NUMBER_8)  &kp LC(NUMBER_9)  &trans      &trans  &kp K_MUTE         &kp C_VOLUME_DOWN  &kp C_VOLUME_UP    &trans             &trans
-&trans  &trans  &trans            &trans            &trans            &trans      &trans  &trans                                                                      &trans
+&trans   &trans  &kp LC(NUMBER_4)  &kp LC(NUMBER_5)  &kp LC(NUMBER_6)  &trans      &gmail  &kp LS(LC(LG(H)))  &kp RG(LC(F))      &kp LS(LC(LG(K)))  &kp LS(LG(LC(L)))  &trans
+&trans   &trans  &kp LC(NUMBER_7)  &kp LC(NUMBER_8)  &kp LC(NUMBER_9)  &trans      &trans  &kp K_MUTE         &kp C_VOLUME_DOWN  &kp C_VOLUME_UP    &trans             &trans
+&trans   &trans  &trans            &trans            &trans            &trans      &trans  &trans                                                                      &trans
             >;
 
             sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
