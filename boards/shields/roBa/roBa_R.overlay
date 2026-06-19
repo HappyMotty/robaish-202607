@@ -19,8 +19,13 @@
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+
+        fast_mouse {
+            input-processors = <&zip_xy_scaler 2 1>;
+        };
     };
 };
+
 
 &pinctrl {
     spi0_default: spi0_default {
