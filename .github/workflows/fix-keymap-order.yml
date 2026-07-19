@@ -1,0 +1,64 @@
+name: Fix keymap include order
+
+# keymap-editor(GUI) で保存すると config/roBa.keymap の
+#   #include <layout_shift_kp_override.dtsi>
+# が先頭(behaviors.dtsi より上)へ移動してしまい、JIS変換(&kp 上書き)が壊れる。
+# この workflow は push 毎に include 順を自動修正し、変わっていれば commit して
+# 正しい順序でビルドが走るよう build.yml を起動する。
+
+on:
+  push:
+    branches: [main]
+    paths: ['config/roBa.keymap']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    # 自分(bot)が作った修正コミットでは再実行しない
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Normalize include order
+        id: fix
+        run: |
+          python3 - <<'PY'
+          path = "config/roBa.keymap"
+          inc  = "#include <layout_shift_kp_override.dtsi>"
+          beh  = "#include <behaviors.dtsi>"
+          lines = open(path, encoding="utf-8").read().split("\n")
+          if any(l.strip() == inc for l in lines) and any(l.strip() == beh for l in lines):
+              # layout_shift の include を一旦すべて除去
+              kept = [l for l in lines if l.strip() != inc]
+              # behaviors.dtsi の直後へ挿入
+              for i, l in enumerate(kept):
+                  if l.strip() == beh:
+                      kept.insert(i + 1, inc)
+                      break
+              if kept != lines:
+                  open(path, "w", encoding="utf-8").write("\n".join(kept))
+          PY
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit fix
+        if: steps.fix.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "ci: layout_shift の include 順を自動修正"
+          git push
+
+      - name: Trigger build on fixed commit
+        if: steps.fix.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run build.yml --ref main

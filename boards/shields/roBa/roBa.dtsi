@@ -109,7 +109,7 @@
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
         sensors = <&left_encoder &right_encoder>;
-        triggers-per-rotation = <10>;
+        triggers-per-rotation = <3>;
     };
 
     trackball_listener: trackball_listener {
@@ -124,5 +124,90 @@
     trackball: trackball@0 {
         status = "disabled";
         reg = <0>;
+    };
+};
+
+// --- GUI(keymap-editor)に消されないカスタム定義 -----------------------------
+// keymap-editor は hold-tap や one-param マクロを理解できず削除してしまうため、
+// GUIが管理する config/roBa.keymap ではなく、ここ(roBa.dtsi)に定義する。
+// keymap 側は参照(&shift_esc_eisu LEFT_SHIFT 0)だけ残せば解決される。
+//
+// 注意: keys.h は上の matrix transform で使う RC(row,col) マクロと衝突する
+// (keys.h 内では RC = 右Ctrl で引数1個)。そのため RC 使用箇所より「後」、
+// かつ #undef RC してから include することで衝突を避ける。
+#undef RC
+#include <dt-bindings/zmk/keys.h>
+
+#ifndef MACRO_PLACEHOLDER
+#define MACRO_PLACEHOLDER 0
+#endif
+
+#define MOUSE_LAYER 4
+
+/ {
+    macros {
+        // MOUSEレイヤーを明示的にOFFにする。
+        exit_aml: exit_aml {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&tog_off MOUSE_LAYER>;
+            label = "EXIT_AML";
+        };
+
+        // Mod-Tapのタップ側で、キー入力後にMOUSEレイヤーを解除する。
+        kp_exit_aml: kp_exit_aml {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            wait-ms = <0>;
+            tap-ms = <0>;
+            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_aml>;
+            label = "KP_EXIT_AML";
+        };
+
+        // hold-tap のタップ側で使うマクロ: ESC → LANG2(英数) を送る。
+        // one-param 形式(引数は未使用)。IME変換中に文字が消える場合は
+        // ESC と LANG2 の順を入れ替えると改善することがある。
+        eisu_esc: eisu_esc {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&kp ESC &kp LANG2 &exit_aml>;
+            label = "EISU_ESC";
+        };
+    };
+
+    behaviors {
+        // レイヤーをトグルせず、指定レイヤーを必ずOFFにする。
+        tog_off: toggle_layer_off {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer Off";
+            toggle-mode = "off";
+        };
+
+        // ホールド時は修飾キーとしてAMLを維持し、タップ時だけAMLを解除する。
+        mt_exit_aml_on_tap: mt_exit_aml_on_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_EXIT_AML_ON_TAP";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            bindings = <&kp>, <&kp_exit_aml>;
+        };
+
+        // 長押し = LEFT_SHIFT / タップ = ESC + LANG2(英数)
+        // 旧 &mt LEFT_SHIFT ESCAPE の置き換え。&mt と違いタップ側にマクロを使える。
+        // 使い方(keymap側): &shift_esc_eisu LEFT_SHIFT 0  (2番目の 0 はダミー)
+        shift_esc_eisu: shift_esc_eisu {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SHIFT_ESC_EISU";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            bindings = <&kp>, <&eisu_esc>;
+        };
     };
 };
