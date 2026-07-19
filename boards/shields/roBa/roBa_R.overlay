@@ -1,4 +1,5 @@
 #include "roBa.dtsi"
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -15,11 +16,30 @@
 };
 
 / {
+    // マウススクロール量を調整するためのスケーラー
+    // <倍率 除数> = <2 1> でスクロール量を2倍に。倍率を上げるほど多くなる
+    scroll_scaler: scroll_scaler {
+        compatible = "zmk,input-processor-scaler";
+        #input-processor-cells = <2>;
+        type = <INPUT_EV_REL>;
+        codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        track-remainders;
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        // トラックボール操作でMOUSEレイヤー(4)を有効化する。
+        // timeout=0のため時間経過では解除せず、キー押下でのみ解除する。
+        input-processors = <&scroll_scaler 2 1 &zip_temp_layer 4 0>;
     };
+};
+
+&zip_temp_layer {
+    // Ctrl/Command/ShiftのホールドとJ/Kのクリック、M/,のコピー/貼り付け中はMOUSEレイヤーを維持する。
+    // 修飾キー兼用キーのタップ側は専用behaviorから明示的に解除する。
+    excluded-positions = <15 16 18 19 30 31 33 39>;
 };
 
 &pinctrl {

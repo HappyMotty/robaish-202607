@@ -1,7 +1,20 @@
 #include <behaviors.dtsi>
+#include <layout_shift_kp_override.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+
+// US配列前提のキーコードを、JIS配列設定のOS(Windows)向けに実行時変換する。
+// &kp をグローバルに上書きするので既存キーマップはそのまま使える。
+// !!! 必ず behaviors.dtsi より「下」に置くこと（上に置くと &kp が未定義になり壊れる）。
+// GUI(keymap-editor)で保存するとこの行が先頭へ移動して壊れるが、
+// ビルド時に .github/workflows/build.yml が自動で正しい順序へ並べ替える。
+//
+// 注意: 下の layout-maps 行は削除しないこと。これが US->JIS マップノードを
+// 参照して有効化している（消すと /omit-if-no-ref/ でマップが消えビルドが壊れる）。
+&tog_ls { layout-maps = <&layout_shift_map_us_to_jis>; };
+&tog_ls_on { layout-maps = <&layout_shift_map_us_to_jis>; };
+&tog_ls_off { layout-maps = <&layout_shift_map_us_to_jis>; };
 
 &mt {
     flavor = "balanced";
@@ -9,7 +22,6 @@
 };
 
 &trackball {
-    automouse-layer = <4>;
     scroll-layers = <5>;
 
     // arrows {
@@ -19,7 +31,6 @@
     //         <&kp LEFT_ARROW>,
     //         <&kp UP_ARROW>,
     //         <&kp DOWN_ARROW>;
-
     //     tick = <10>;
     //     wait-ms = <5>;
     //     tap-ms = <5>;
@@ -30,50 +41,76 @@
     combos {
         compatible = "zmk,combos";
 
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
-
-        shift_tab {
-            bindings = <&kp LS(TAB)>;
-            key-positions = <12 13>;
-        };
-
-        muhennkann {
-            bindings = <&to_layer_0 INT_MUHENKAN>;
-            key-positions = <11 10>;
-        };
-
-        double_quotation {
-            bindings = <&kp DOUBLE_QUOTES>;
-            key-positions = <20 21>;
-        };
-
-        eq {
-            bindings = <&kp EQUAL>;
-            key-positions = <24 25>;
+        tmux_vmode {
+            bindings = <&tmux_vmode>;
+            key-positions = <39 26>;
         };
     };
 
     macros {
-        to_layer_0: to_layer_0 {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-            label = "TO_LAYER_0";
+        // BTプロファイル切替と同時にレイアウトシフト(US/JIS)を切り替える。
+        // mac    = プロファイル1(BT_SEL 0) → US(レイアウトシフトOFF)
+        // Windows = プロファイル5(BT_SEL 4) → JIS(レイアウトシフトON)
+
+        bt_mac: bt_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0 &tog_ls_off>;
+            label = "BT_MAC";
+        };
+
+        bt_win: bt_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 4 &tog_ls_on>;
+            label = "BT_WIN";
+        };
+
+        gmail: mail {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp A &kp R &kp A &kp T &kp A &kp K &kp A &kp J &kp I &kp N0 &kp N7 &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+            label = "MAIL";
+        };
+
+        coment_out: coment_out {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp G &kp C &kp C>;
+            label = "COMENT_OUT";
+        };
+
+        tmux_vmode: tmux_vmode {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(B) &kp V>;
+            label = "TMUX_VMODE";
+        };
+
+        // hold-tap のタップ側で使うマクロ: ESC を送ってから LANG2(英数)へ切り替える。
+        // hold-tap のタップ側に渡すため one-param 形式にしている(引数は未使用)。
+        // IME変換中に composition が消える場合は ESC と LANG2 の順序を入れ替えると改善することがある。
+        // ロータリーエンコーダ用: 回転をマウスホイールスクロールに割り当てる behavior。
+        // 1つ目(時計回り)=下スクロール, 2つ目(反時計回り)=上スクロール。
+        // 逆にしたい場合は SCRL_DOWN と SCRL_UP を入れ替える。
+        // スクロール量は triggers-per-rotation(roBa.dtsi) と tap-ms で調整。
+        // もっと大きく動かしたい時は #include 群の前に
+        //   #define ZMK_MOUSE_DEFAULT_SCRL_VAL <値>
+        // を追加する。
+
+        scroll_up_down: scroll_up_down {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+
+            tap-ms = <20>;
         };
     };
 
     behaviors {
-        lt_to_layer_0: lt_to_layer_0 {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LAYER_TAP_TO_0";
-            bindings = <&mo>, <&to_layer_0>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-        };
+        // 長押し = LEFT_SHIFT / タップ = ESC + LANG2(英数)
+        // 旧 &mt LEFT_SHIFT ESCAPE の置き換え。&mt と違いタップ側にマクロを使える。
+        // 使い方: &shift_esc_eisu LEFT_SHIFT 0  (2番目の引数 0 は未使用のダミー)
     };
 
     keymap {
@@ -81,52 +118,61 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                        &kp T                                                          &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &kp F                        &kp G        &kp LS(LG(S))                      &kp MINUS      &kp H        &kp J  &kp K      &kp L    &kp SQT
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                        &kp B        &kp COLON                          &kp SEMICOLON  &kp N        &kp M  &kp COMMA  &kp DOT  &kp SLASH
-&kp LCTRL         &kp LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 6 INT_HENKAN  &lt 2 SPACE  &lt_to_layer_0 3 INT_MUHENKAN      &kp BACKSPACE  &lt 1 ENTER                             &kp DEL
+&kp Q        &kp W          &kp E       &kp R       &kp T                                                           &kp Y        &kp U  &kp I      &kp O    &kp P
+&kp A        &kp S          &kp D       &kp F       &kp G        &mt_exit_aml_on_tap LCTRL LANGUAGE_2              &mt_exit_aml_on_tap LALT LANG1  &kp H        &kp J  &kp K      &kp L    &lt 5 MINUS
+&kp Z        &kp X          &kp C       &kp V       &kp B        &kp TAB                                       &kp CARET        &kp N        &kp M  &kp COMMA  &kp DOT  &mt_exit_aml_on_tap RIGHT_COMMAND DOLLAR
+&coment_out  &kp BACKSLASH  &caps_word  &lt 3 HASH  &lt 2 SPACE  &shift_esc_eisu LEFT_SHIFT 0      &kp BACKSPACE    &lt 1 ENTER                             &kp UNDERSCORE
             >;
 
-            sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
+            // エンコーダ: マウスホイールスクロール（旧: &inc_dec_kp PAGE_DOWN PAGE_UP）
         };
 
-        FUNCTION {
+        Num {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                       &kp F1  &kp F2  &kp F3  &kp F4  &kp F5
-&trans  &trans  &trans  &trans  &trans  &trans      &kp F13  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans  &trans  &trans  &trans  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans      &trans   &trans                          &kp F12
-            >;
-        };
-
-        NUM {
-            bindings = <
-&kp MINUS                   &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &kp PLUS                                                   &kp CARET         &kp AMPERSAND      &kp TILDE       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp SLASH                   &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp ASTERISK  &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp EXCLAMATION   &kp AT_SIGN        &kp HASH        &kp DOLLAR            &kp PERCENT
-&mt LEFT_SHIFT KP_NUMBER_0  &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD    &kp EQUAL                    &trans          &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp BACKSLASH
-&trans                      &trans           &trans           &trans           &trans        &trans                       &trans          &trans                                                                     &kp PIPE
+&trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3                            &kp BACKSLASH  &kp AT_SIGN  &trans        &trans         &trans
+&trans  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp NUMBER_0      &trans  &kp SLASH      &kp EQUAL    &kp ASTERISK  &kp PLUS       &kp TILDE
+&trans  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans            &trans  &kp PERCENT    &kp PERIOD   &kp COLON     &kp SEMICOLON  &trans
+&trans  &trans  &trans        &trans        &trans        &trans            &trans  &trans                                                   &trans
             >;
         };
 
-        ARROW {
+        Mark {
             bindings = <
-&kp ESCAPE      &kp LC(LS(TAB))         &kp UP_ARROW    &kp LC(TAB)              &trans                       &trans  &trans  &trans  &trans  &trans
-&kp HOME        &kp LEFT_ARROW          &kp DOWN_ARROW  &kp RIGHT_ARROW          &kp END  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&kp LEFT_SHIFT  &kp LG(LS(LEFT_ARROW))  &trans          &kp LG(LS(RIGHT_ARROW))  &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                          &trans
+&trans  &kp LC(LS(Z))  &kp LC(Z)         &kp LC(V)       &kp LC(C)                                               &trans                 &trans           &trans             &trans            &trans
+&trans  &kp PIPE       &kp AMPERSAND     &kp EXCL        &kp QUESTION          &trans         &kp DOUBLE_QUOTES  &kp LEFT               &kp DOWN         &kp UP             &kp RIGHT         &trans
+&trans  &kp LESS_THAN  &kp LEFT_BRACKET  &kp LEFT_BRACE  &kp LEFT_PARENTHESIS  &kp GRAVE      &kp SINGLE_QUOTE   &kp RIGHT_PARENTHESIS  &kp RIGHT_BRACE  &kp RIGHT_BRACKET  &kp GREATER_THAN  &trans
+&trans  &trans         &trans            &trans          &trans                &trans         &trans             &trans                                                                       &trans
+            >;
+        };
+
+        Device {
+            bindings = <
+&tog_ls  &trans  &kp LC(NUMBER_1)  &kp LC(NUMBER_2)  &kp LC(NUMBER_3)                               &bt_mac            &bt BT_SEL 1       &bt BT_SEL 2       &bt BT_SEL 3       &bt_win
+&trans  &trans  &kp LC(NUMBER_4)  &kp LC(NUMBER_5)  &kp LC(NUMBER_6)  &kp PRINTSCREEN      &gmail  &kp LS(LC(LG(H)))  &kp RG(LC(F))      &kp LS(LC(LG(K)))  &kp LS(LG(LC(L)))  &trans
+&trans  &trans  &kp LC(NUMBER_7)  &kp LC(NUMBER_8)  &kp LC(NUMBER_9)  &trans               &trans  &kp K_MUTE         &kp C_VOLUME_DOWN  &kp C_VOLUME_UP    &trans             &trans
+&trans  &trans  &trans            &trans            &trans            &trans               &trans  &trans                                                                      &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+            sensor-bindings = <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans    &trans    &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &mkp MB2  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &kp LC(C)  &kp LC(V)  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
         };
+
+        // ===== トラックボール・スクロール用レイヤー (index 5) =====
+        // このレイヤーがアクティブな間、トラックボールの移動がスクロールになる
+        // (&trackball の scroll-layers = <5> がこのレイヤーを指している)。
+        //
+        // 【使い方】呼び出しキーは未設定。好きなキーに後から割り当ててください。
+        //   例) 押している間だけスクロール:  &mo 5
+        //   例) タップ=元の文字 / ホールド=スクロール:  &lt 5 <KEY>
+        // 中身は全て &trans なので、スクロール中も下位レイヤーのキーがそのまま使えます。
 
         SCROLL {
             bindings = <
@@ -134,15 +180,6 @@
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        layer_6 {
-            bindings = <
-&trans  &trans        &trans        &trans        &trans                           &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans        &trans        &trans        &trans        &trans
-&trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans      &bootloader  &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans  &trans        &trans        &trans        &trans  &trans      &trans       &trans                                                  &bt BT_CLR_ALL
             >;
         };
     };
