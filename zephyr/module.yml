@@ -1,4 +1,4 @@
-name: roBa
+name: roBa-ish-m
 build:
   settings:
     board_root: .
