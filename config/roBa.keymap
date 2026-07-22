@@ -80,17 +80,17 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E         &kp R                 &kp T                                                                         &kp Y        &kp U  &lt 5 I    &kp O    &kp P
-&kp A             &kp S         &kp D         &lt 3 F               &kp G                   &kp F20                              &mkp MB3         &kp H        &kp J  &kp K      &kp L    &mt RC(SQT) SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                 &kp B                   &kp F20                              &lt 6 F5         &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT DELETE
-&kp PRINTSCREEN   &kp LEFT_WIN  &kp LEFT_ALT  &mt LCTRL LANGUAGE_5  &mt LS(LEFT_WIN) SPACE  &mt LS(LC(LEFT_WIN)) LANGUAGE_4      &lt 2 BACKSPACE  &lt 1 ENTER                             &lt 5 SLASH
+&kp Q             &kp W         &kp E         &kp R                 &kp T                                                                        &kp Y        &kp U  &lt 5 I    &kp O    &kp P
+&kp A             &kp S         &kp D         &lt 3 F               &kp G                   &kp F20                             &mkp MB3         &kp H        &kp J  &kp K      &kp L    &mt RC(SQT) SEMICOLON
+&mt LEFT_SHIFT Z  &kp X         &kp C         &kp V                 &kp B                   &kp F20                             &lt 6 F5         &kp N        &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT DELETE
+&kp PRINTSCREEN   &kp LEFT_WIN  &kp LEFT_ALT  &mt LCTRL LANGUAGE_5  &mt LS(LEFT_WIN) SPACE  &mt LG(LC(LEFT_WIN)) LA(GRAVE)      &lt 2 BACKSPACE  &lt 1 ENTER                             &lt 5 SLASH
             >;
         };
 
         FUNCTION {
             bindings = <
 &kp LS(NUMBER_1)  &kp LS(NUMBER_2)  &kp LS(NUMBER_3)  &kp LS(NUMBER_4)  &kp LS(NUMBER_5)                      &kp LS(NUMBER_6)  &kp LS(NUMBER_7)  &kp LS(NUMBER_8)  &kp LS(NUMBER_9)  &kp LS(NUMBER_0)
-&trans            &trans            &trans            &trans            &trans            &trans      &trans  &kp LEFT_ARROW    &kp DOWN_ARROW    &kp UP_ARROW      &kp RIGHT_ARROW   &kp NON_US_BACKSLASH
+&kp GRAVE         &trans            &trans            &trans            &trans            &trans      &trans  &kp LEFT_ARROW    &kp DOWN_ARROW    &kp UP_ARROW      &kp RIGHT_ARROW   &kp NON_US_BACKSLASH
 &trans            &trans            &trans            &trans            &trans            &trans      &trans  &kp LC(X)         &kp LC(C)         &kp LC(V)         &kp LEFT_BRACKET  &mt RIGHT_SHIFT RIGHT_BRACKET
 &trans            &trans            &trans            &trans            &trans            &trans      &trans  &trans                                                                  &kp SQT
             >;
