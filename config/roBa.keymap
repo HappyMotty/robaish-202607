@@ -86,7 +86,7 @@
 &kp LS(RCTRL)     &kp LEFT_WIN  &kp LEFT_ALT  &mt LCTRL LA(GRAVE)  &mt LS(LEFT_WIN) SPACE  &mt LG(LC(LEFT_WIN)) LA(GRAVE)      &lt 2 BACKSPACE  &lt 1 ENTER                             &lt 5 SLASH
             >;
 
-            sensor-bindings = <&inc_dec_kp LA(TAB) LS(LA(TAB))>;
+            sensor-bindings = <&inc_dec_kp LC(PLUS) LC(MINUS)>;
         };
 
         FUNCTION {
@@ -115,7 +115,7 @@
 &trans      &trans              &trans               &trans  &trans  &trans      &trans  &trans                                                         &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp 0 0>;
+            sensor-bindings = <&inc_dec_kp LG(LC(RIGHT_ARROW)) LC(LG(LEFT_ARROW))>;
         };
 
         MOUSE {
