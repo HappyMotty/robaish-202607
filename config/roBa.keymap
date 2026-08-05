@@ -109,11 +109,13 @@
 
         ARROW {
             bindings = <
-&kp ESCAPE  &trans              &trans               &trans  &trans                      &trans          &trans          &trans        &trans           &trans
+&kp ESCAPE  &trans              &kp LG(UP_ARROW)     &trans  &trans                      &trans          &trans          &trans        &trans           &trans
 &kp TAB     &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)  &trans  &trans  &trans      &trans  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW  &trans
-&trans      &trans              &trans               &trans  &trans  &trans      &trans  &trans          &trans          &trans        &trans           &trans
+&trans      &trans              &kp LG(DOWN_ARROW)   &trans  &trans  &trans      &trans  &trans          &trans          &trans        &trans           &trans
 &trans      &trans              &trans               &trans  &trans  &trans      &trans  &trans                                                         &trans
             >;
+
+            sensor-bindings = <&inc_dec_kp 0 0>;
         };
 
         MOUSE {
