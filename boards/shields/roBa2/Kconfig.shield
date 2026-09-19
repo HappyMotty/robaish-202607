@@ -1,2 +1,0 @@
-config SHIELD_ROBA2_R
-    def_bool $(shields_list_contains,roBa2_R)

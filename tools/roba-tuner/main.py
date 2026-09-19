@@ -17,19 +17,28 @@ from tkinter import messagebox, scrolledtext, ttk
 import flash
 import github_build
 import zmk_studio
+from cmake_args_store import CmakeArgsStore
 from kconfig import TUNABLES, KconfigFile
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
+BUILD_YAML_RELATIVE = "build.yaml"
 
+# "conf": boards/shields配下の.confファイルを直接編集する(1号機)
+# "cmake_args": build.yaml内の該当artifact-nameのcmake-argsを編集する(2号機)
+#   2号機は1号機と同じroBa_Rシールドをそのまま使い、ビルド時の値上書きだけで
+#   別のキーボード名・別のトラックボール設定にしている(理由: 独自シールドを
+#   新設すると、原因不明のZephyrデバイス名長エラーでビルドが失敗したため)
 KEYBOARDS = [
     {
         "label": "1号機 (roBa)",
+        "kind": "conf",
         "conf_relative": "boards/shields/roBa/roBa_R.conf",
         "uf2_match": "roBa_R",
     },
     {
         "label": "2号機 (roBa2)",
-        "conf_relative": "boards/shields/roBa2/roBa2_R.conf",
+        "kind": "cmake_args",
+        "artifact_name": "roBa2_R",
         "uf2_match": "roBa2_R",
     },
 ]
@@ -56,13 +65,17 @@ class App(tk.Tk):
     def active_keyboard(self) -> dict:
         return KEYBOARDS[self.keyboard_index.get()]
 
-    @property
-    def conf_path(self) -> Path:
-        return REPO_ROOT / self.active_keyboard["conf_relative"]
+    def _make_store(self):
+        kb = self.active_keyboard
+        if kb["kind"] == "conf":
+            return KconfigFile(REPO_ROOT / kb["conf_relative"])
+        return CmakeArgsStore(REPO_ROOT / BUILD_YAML_RELATIVE, kb["artifact_name"])
 
     @property
-    def conf_relative(self) -> str:
-        return self.active_keyboard["conf_relative"]
+    def target_relative(self) -> str:
+        """git add/commitの対象となる、リポジトリルートからの相対パス"""
+        kb = self.active_keyboard
+        return kb["conf_relative"] if kb["kind"] == "conf" else BUILD_YAML_RELATIVE
 
     # ---------- UI構築 ----------
     def _build_widgets(self) -> None:
@@ -131,7 +144,7 @@ class App(tk.Tk):
         self.log_box.pack(fill="both", expand=False, padx=10, pady=(0, 10))
 
     def _update_header(self) -> None:
-        self.header_label.configure(text=f"編集対象: {self.conf_relative}")
+        self.header_label.configure(text=f"編集対象: {self.target_relative}")
 
     def log(self, message: str) -> None:
         def _append():
@@ -145,28 +158,28 @@ class App(tk.Tk):
     # ---------- ファイル読み書き ----------
     def load_from_file(self) -> None:
         self._update_header()
-        kconfig = KconfigFile(self.conf_path)
+        store = self._make_store()
         for spec in TUNABLES:
             if spec.kind == "bool":
-                self.bool_vars[spec.key].set(kconfig.get_bool(spec.key))
+                self.bool_vars[spec.key].set(store.get_bool(spec.key))
             elif spec.kind == "str":
-                self.str_vars[spec.key].set(kconfig.get_str(spec.key, str(spec.default)))
+                self.str_vars[spec.key].set(store.get_str(spec.key, str(spec.default)))
             else:
-                value, enabled = kconfig.get_int(spec.key, spec.default)
+                value, enabled = store.get_int(spec.key, spec.default)
                 self.int_vars[spec.key].set(str(value))
                 if spec.optional:
                     self.enable_vars[spec.key].set(enabled)
-        self.log(f"設定ファイルを読み込みました ({self.conf_relative})")
+        self.log(f"設定を読み込みました ({self.target_relative} / {self.active_keyboard['label']})")
 
-    def _apply_to_kconfig(self, kconfig: KconfigFile) -> None:
+    def _apply_to_store(self, store) -> None:
         for spec in TUNABLES:
             if spec.kind == "bool":
-                kconfig.set_bool(spec.key, self.bool_vars[spec.key].get())
+                store.set_bool(spec.key, self.bool_vars[spec.key].get())
             elif spec.kind == "str":
                 value = self.str_vars[spec.key].get().strip()
                 if not value:
                     raise ValueError(f"{spec.label} は空にできません")
-                kconfig.set_str(spec.key, value)
+                store.set_str(spec.key, value)
             else:
                 raw = self.int_vars[spec.key].get().strip()
                 try:
@@ -178,33 +191,32 @@ class App(tk.Tk):
                         f"{spec.label} は {spec.min_value}〜{spec.max_value} の範囲で入力してください"
                     )
                 enabled = self.enable_vars[spec.key].get() if spec.optional else True
-                kconfig.set_int(spec.key, value, enabled=enabled)
+                store.set_int(spec.key, value, enabled=enabled)
 
     # ---------- ボタン動作 ----------
     def save_and_build(self) -> None:
-        conf_path = self.conf_path
-        conf_relative = self.conf_relative
+        target_relative = self.target_relative
 
         try:
-            kconfig = KconfigFile(conf_path)
-            self._apply_to_kconfig(kconfig)
+            store = self._make_store()
+            self._apply_to_store(store)
         except ValueError as e:
             messagebox.showerror("入力エラー", str(e))
             return
 
-        kconfig.save()
-        self.log(f"設定ファイルを保存しました ({conf_relative})")
+        store.save()
+        self.log(f"設定を保存しました ({target_relative})")
 
-        if not github_build.has_changes(REPO_ROOT, conf_relative):
+        if not github_build.has_changes(REPO_ROOT, target_relative):
             self.log("変更がないため、ビルドはスキップします")
             return
 
-        threading.Thread(target=self._build_worker, args=(conf_relative,), daemon=True).start()
+        threading.Thread(target=self._build_worker, args=(target_relative,), daemon=True).start()
 
-    def _build_worker(self, conf_relative: str) -> None:
+    def _build_worker(self, target_relative: str) -> None:
         try:
             sha = github_build.commit_and_push(
-                REPO_ROOT, conf_relative, "roba-tuner: トラックボール設定を更新", self.log
+                REPO_ROOT, target_relative, "roba-tuner: トラックボール設定を更新", self.log
             )
             run = github_build.wait_for_run(REPO_ROOT, sha, self.log)
             dest = REPO_ROOT / "tools" / "roba-tuner" / "_downloads" / str(run["databaseId"])
