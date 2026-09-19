@@ -29,4 +29,3 @@ include:
  # L側は共通のroBa_Lをそのまま使う(BLEのペアリングは名前でなくボード単位のため)
  - board: seeeduino_xiao_ble
    shield: roBa2_R
-   snippet: studio-rpc-usb-uart
