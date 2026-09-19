@@ -1,4 +1,5 @@
 #include "roBa.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &default_transform {
     col-offset = <6>;
@@ -15,10 +16,20 @@
 };
 
 / {
+    input_processors {
+        zip_xy_accel: zip_xy_accel {
+            compatible = "zmk,input-processor-accel";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_X INPUT_REL_Y>;
+        };
+    };
+
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        input-processors = <&zip_xy_accel>;
     };
 };
 

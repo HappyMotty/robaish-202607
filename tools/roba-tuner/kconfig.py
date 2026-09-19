@@ -50,6 +50,18 @@ TUNABLES: list[TunableSpec] = [
                 help="有効化すると低速精密モード用のCPIを別途指定できる"),
     TunableSpec("CONFIG_PMW3610_SNIPE_CPI_DIVIDOR", "スナイプモード CPI分周比", "int", optional=True,
                 default=4, min_value=1, max_value=8),
+    TunableSpec("CONFIG_ZMK_INPUT_PROCESSOR_ACCEL_MIN_FACTOR", "ポインタ加速: 低速時倍率(%)", "int",
+                default=100, min_value=10, max_value=1000,
+                help="ゆっくり動かした時の倍率。100=等倍"),
+    TunableSpec("CONFIG_ZMK_INPUT_PROCESSOR_ACCEL_MAX_FACTOR", "ポインタ加速: 高速時倍率(%)", "int",
+                default=100, min_value=10, max_value=1000,
+                help="素早く動かした時の倍率。低速時倍率と同じにすると加速なし"),
+    TunableSpec("CONFIG_ZMK_INPUT_PROCESSOR_ACCEL_SPEED_MIN", "ポインタ加速: 開始しきい値(count/report)", "int",
+                default=3, min_value=0, max_value=200,
+                help="この移動量以下では低速時倍率が適用される"),
+    TunableSpec("CONFIG_ZMK_INPUT_PROCESSOR_ACCEL_SPEED_MAX", "ポインタ加速: 最大到達しきい値(count/report)", "int",
+                default=18, min_value=1, max_value=200,
+                help="この移動量以上では高速時倍率が適用される(間は線形補間)"),
 ]
 
 
