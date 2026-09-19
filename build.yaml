@@ -25,7 +25,8 @@ include:
    shield: roBa_L
  - board: seeeduino_xiao_ble
    shield: settings_reset
- # 2号機 (roBa2): トラックボール側(R)のみ別ファームウェア。
- # L側は共通のroBa_Lをそのまま使う(BLEのペアリングは名前でなくボード単位のため)
+ # デバッグ: roBa_Rシールドをそのまま使い、cmake-argsだけ変えて2ビルド目にする
  - board: seeeduino_xiao_ble
-   shield: roBa2_R
+   shield: roBa_R
+   cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME='"roBa-ish-2"'
+   artifact-name: roBa2_R_debug
