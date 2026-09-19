@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "zmkfirmware.zmk-tools",
+        "trond-snekvik.devicetree",
+        "ms-vscode.cpptools"
+    ]
+}
