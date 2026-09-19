@@ -1,8 +1,14 @@
 # roBa トラックボール設定ツール
 
 roBa (ZMK / PMW3610トラックボール) 用の個人利用ツール。
-`boards/shields/roBa/roBa_R.conf` のトラックボール設定をGUIで編集し、
+トラックボール設定をGUIで編集し、
 GitHubへpush → GitHub Actionsでビルド → UF2取得 → ボードへ書き込み、まで行う。
+
+同じroBaを2台所有している場合のために「1号機(roBa) / 2号機(roBa2)」を
+画面上部で切り替えられる。それぞれ独立した設定ファイル
+(`boards/shields/roBa/roBa_R.conf` / `boards/shields/roBa2/roBa2_R.conf`)
+を持ち、キーボード名(PC/BLEに表示される名前)も個別に設定できるので、
+2台をPCに接続したときに区別できる。
 
 キーマップ自体の編集は [ZMK Studio](https://zmk.studio/) を使用する
 (このリポジトリは `CONFIG_ZMK_STUDIO=y` で対応済み)。

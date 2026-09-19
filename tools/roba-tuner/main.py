@@ -3,6 +3,9 @@
 トラックボール(PMW3610)のKconfig設定をGUIで編集し、
 GitHubへpush -> GitHub Actionsでビルド -> UF2をダウンロード -> 書き込み、
 までを行う。roBa/ZMK設定リポジトリ専用の個人用ツール。
+
+同じハードウェアを2台所有している場合のために、
+「1号機(roBa) / 2号機(roBa2)」を切り替えて別々に設定・書き込みできる。
 """
 from __future__ import annotations
 
@@ -17,28 +20,64 @@ import zmk_studio
 from kconfig import TUNABLES, KconfigFile
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-CONF_PATH = REPO_ROOT / "boards" / "shields" / "roBa" / "roBa_R.conf"
-CONF_RELATIVE = "boards/shields/roBa/roBa_R.conf"
+
+KEYBOARDS = [
+    {
+        "label": "1号機 (roBa)",
+        "conf_relative": "boards/shields/roBa/roBa_R.conf",
+        "uf2_match": "roBa_R",
+    },
+    {
+        "label": "2号機 (roBa2)",
+        "conf_relative": "boards/shields/roBa2/roBa2_R.conf",
+        "uf2_match": "roBa2_R",
+    },
+]
 
 
 class App(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         self.title("roBa トラックボール設定ツール")
-        self.geometry("640x760")
+        self.geometry("640x800")
 
         self.bool_vars: dict[str, tk.BooleanVar] = {}
         self.int_vars: dict[str, tk.StringVar] = {}
+        self.str_vars: dict[str, tk.StringVar] = {}
         self.enable_vars: dict[str, tk.BooleanVar] = {}
         self.last_download_dir: Path | None = None
+        self.keyboard_index = tk.IntVar(value=0)
 
         self._build_widgets()
         self.load_from_file()
 
+    # ---------- 選択中のキーボード ----------
+    @property
+    def active_keyboard(self) -> dict:
+        return KEYBOARDS[self.keyboard_index.get()]
+
+    @property
+    def conf_path(self) -> Path:
+        return REPO_ROOT / self.active_keyboard["conf_relative"]
+
+    @property
+    def conf_relative(self) -> str:
+        return self.active_keyboard["conf_relative"]
+
     # ---------- UI構築 ----------
     def _build_widgets(self) -> None:
-        header = ttk.Label(self, text=f"編集対象: {CONF_RELATIVE}", font=("", 9))
-        header.pack(fill="x", padx=10, pady=(10, 0))
+        kb_row = ttk.Frame(self)
+        kb_row.pack(fill="x", padx=10, pady=(10, 0))
+        ttk.Label(kb_row, text="対象キーボード:").pack(side="left")
+        for i, kb in enumerate(KEYBOARDS):
+            ttk.Radiobutton(
+                kb_row, text=kb["label"], value=i, variable=self.keyboard_index,
+                command=self.load_from_file,
+            ).pack(side="left", padx=5)
+
+        self.header_label = ttk.Label(self, text="", font=("", 9), foreground="#666")
+        self.header_label.pack(fill="x", padx=10, pady=(0, 0))
+        self._update_header()
 
         canvas = tk.Canvas(self, borderwidth=0)
         frame = ttk.Frame(canvas)
@@ -58,6 +97,11 @@ class App(tk.Tk):
                 var = tk.BooleanVar()
                 self.bool_vars[spec.key] = var
                 ttk.Checkbutton(row, text=spec.label, variable=var).pack(side="left")
+            elif spec.kind == "str":
+                ttk.Label(row, text=spec.label, width=28).pack(side="left")
+                var = tk.StringVar()
+                self.str_vars[spec.key] = var
+                ttk.Entry(row, textvariable=var, width=20).pack(side="left")
             else:
                 if spec.optional:
                     enable_var = tk.BooleanVar()
@@ -86,6 +130,9 @@ class App(tk.Tk):
         self.log_box = scrolledtext.ScrolledText(self, height=12, state="disabled")
         self.log_box.pack(fill="both", expand=False, padx=10, pady=(0, 10))
 
+    def _update_header(self) -> None:
+        self.header_label.configure(text=f"編集対象: {self.conf_relative}")
+
     def log(self, message: str) -> None:
         def _append():
             self.log_box.configure(state="normal")
@@ -97,21 +144,29 @@ class App(tk.Tk):
 
     # ---------- ファイル読み書き ----------
     def load_from_file(self) -> None:
-        kconfig = KconfigFile(CONF_PATH)
+        self._update_header()
+        kconfig = KconfigFile(self.conf_path)
         for spec in TUNABLES:
             if spec.kind == "bool":
                 self.bool_vars[spec.key].set(kconfig.get_bool(spec.key))
+            elif spec.kind == "str":
+                self.str_vars[spec.key].set(kconfig.get_str(spec.key, str(spec.default)))
             else:
                 value, enabled = kconfig.get_int(spec.key, spec.default)
                 self.int_vars[spec.key].set(str(value))
                 if spec.optional:
                     self.enable_vars[spec.key].set(enabled)
-        self.log("設定ファイルを読み込みました")
+        self.log(f"設定ファイルを読み込みました ({self.conf_relative})")
 
     def _apply_to_kconfig(self, kconfig: KconfigFile) -> None:
         for spec in TUNABLES:
             if spec.kind == "bool":
                 kconfig.set_bool(spec.key, self.bool_vars[spec.key].get())
+            elif spec.kind == "str":
+                value = self.str_vars[spec.key].get().strip()
+                if not value:
+                    raise ValueError(f"{spec.label} は空にできません")
+                kconfig.set_str(spec.key, value)
             else:
                 raw = self.int_vars[spec.key].get().strip()
                 try:
@@ -127,26 +182,29 @@ class App(tk.Tk):
 
     # ---------- ボタン動作 ----------
     def save_and_build(self) -> None:
+        conf_path = self.conf_path
+        conf_relative = self.conf_relative
+
         try:
-            kconfig = KconfigFile(CONF_PATH)
+            kconfig = KconfigFile(conf_path)
             self._apply_to_kconfig(kconfig)
         except ValueError as e:
             messagebox.showerror("入力エラー", str(e))
             return
 
         kconfig.save()
-        self.log("設定ファイルを保存しました")
+        self.log(f"設定ファイルを保存しました ({conf_relative})")
 
-        if not github_build.has_changes(REPO_ROOT, CONF_RELATIVE):
+        if not github_build.has_changes(REPO_ROOT, conf_relative):
             self.log("変更がないため、ビルドはスキップします")
             return
 
-        threading.Thread(target=self._build_worker, daemon=True).start()
+        threading.Thread(target=self._build_worker, args=(conf_relative,), daemon=True).start()
 
-    def _build_worker(self) -> None:
+    def _build_worker(self, conf_relative: str) -> None:
         try:
             sha = github_build.commit_and_push(
-                REPO_ROOT, CONF_RELATIVE, "roba-tuner: トラックボール設定を更新", self.log
+                REPO_ROOT, conf_relative, "roba-tuner: トラックボール設定を更新", self.log
             )
             run = github_build.wait_for_run(REPO_ROOT, sha, self.log)
             dest = REPO_ROOT / "tools" / "roba-tuner" / "_downloads" / str(run["databaseId"])
@@ -166,16 +224,16 @@ class App(tk.Tk):
         if not self.last_download_dir:
             messagebox.showinfo("書き込み", "先に「保存してビルド」を実行してください")
             return
-        uf2_files = [p for p in github_build.find_uf2_files(self.last_download_dir) if "roBa_R" in p.name]
+
+        uf2_match = self.active_keyboard["uf2_match"]
+        uf2_files = [p for p in github_build.find_uf2_files(self.last_download_dir) if uf2_match in p.name]
         if not uf2_files:
-            uf2_files = github_build.find_uf2_files(self.last_download_dir)
-        if not uf2_files:
-            messagebox.showerror("書き込み", "UF2ファイルが見つかりません")
+            messagebox.showerror("書き込み", f"{uf2_match} のUF2ファイルが見つかりません")
             return
 
         uf2_path = uf2_files[0]
         self.log(f"書き込み対象: {uf2_path.name}")
-        self.log("ボード右側(roBa_R)のリセットボタンを2回押してブートローダーモードにしてください")
+        self.log("対象ボードのリセットボタンを2回押してブートローダーモードにしてください")
         threading.Thread(target=self._flash_worker, args=(uf2_path,), daemon=True).start()
 
     def _flash_worker(self, uf2_path: Path) -> None:

@@ -1,0 +1,2 @@
+/* roBa2 (2号機) はroBaと全く同じハードウェアなので、既存のoverlayをそのまま再利用する */
+#include "../roBa/roBa_R.overlay"
