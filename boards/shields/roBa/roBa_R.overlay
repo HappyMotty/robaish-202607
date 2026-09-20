@@ -23,13 +23,20 @@
             type = <INPUT_EV_REL>;
             codes = <INPUT_REL_X INPUT_REL_Y>;
         };
+
+        zip_scroll_inertia: zip_scroll_inertia {
+            compatible = "zmk,input-processor-scroll-inertia";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL INPUT_REL_HWHEEL>;
+        };
     };
 
     trackball_listener {
         status = "okay";
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&zip_xy_accel>;
+        input-processors = <&zip_xy_accel>, <&zip_scroll_inertia>;
     };
 };
 
