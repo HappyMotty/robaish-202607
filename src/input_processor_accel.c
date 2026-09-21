@@ -11,10 +11,6 @@
 #include <zephyr/device.h>
 #include <drivers/input_processor.h>
 
-#include <zephyr/logging/log.h>
-
-LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
-
 struct accel_config {
     uint8_t type;
     size_t codes_len;
@@ -61,9 +57,7 @@ static int accel_handle_event(const struct device *dev, struct input_event *even
 
     for (int i = 0; i < cfg->codes_len; i++) {
         if (cfg->codes[i] == event->code) {
-            int16_t before = event->value;
             event->value = apply_accel(event->value);
-            LOG_DBG("accel: code=%d value=%d -> %d", event->code, before, event->value);
             break;
         }
     }
