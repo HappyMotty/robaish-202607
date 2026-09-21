@@ -13,9 +13,18 @@
 #include <zephyr/init.h>
 #include <zephyr/settings/settings.h>
 
-#include <zmk/ble.h>
+/* zmk_ble_set_device_name()を含むsrc/ble.cは、ZMKコア側のCMakeLists.txtで
+ * 「分割キーボードでない、または中央機(central)である」かつ
+ * CONFIG_ZMK_BLEが有効な場合にのみリンクされる。左手(周辺機)や
+ * settings_resetのビルドではリンクされないため、同じ条件で囲んで
+ * 未定義参照エラーを避ける。 */
+#define ROBA_BLE_NAME_FIX_AVAILABLE                                                              \
+    (IS_ENABLED(CONFIG_ZMK_BLE) &&                                                               \
+     (!IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)))
 
-#if IS_ENABLED(CONFIG_SETTINGS)
+#if IS_ENABLED(CONFIG_SETTINGS) && ROBA_BLE_NAME_FIX_AVAILABLE
+
+#include <zmk/ble.h>
 
 static int roba_force_ble_name_commit(void) {
     zmk_ble_set_device_name((char *)CONFIG_BT_DEVICE_NAME);
