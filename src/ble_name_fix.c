@@ -11,6 +11,7 @@
  * ことで、保存された古い名前が残り続ける問題を解消する。
  */
 #include <zephyr/init.h>
+#include <zephyr/kernel.h>
 #include <zephyr/settings/settings.h>
 
 /* zmk_ble_set_device_name()を含むsrc/ble.cは、ZMKコア側のCMakeLists.txtで
@@ -26,8 +27,23 @@
 
 #include <zmk/ble.h>
 
-static int roba_force_ble_name_commit(void) {
+/*
+ * h_commitはsettings_load()の呼び出しスタックの中で同期的に実行される。
+ * zmk_ble_set_device_name()はbt_set_name()経由でsettings_save_one()を
+ * 呼び、settingsへの書き込みを行うため、settings読み込みが完了しきって
+ * いないこのタイミングで直接呼ぶと、settingsサブシステムの内部状態/ロックに
+ * 再入してしまい、起動がハングする(→ウォッチドッグでリブートを繰り返す)
+ * 恐れがある。そのため実際の呼び出しはシステムワークキューに委譲し、
+ * settings_load()の呼び出しスタックを抜けた後に実行する。
+ */
+static void roba_force_ble_name_work_handler(struct k_work *work) {
     zmk_ble_set_device_name((char *)CONFIG_BT_DEVICE_NAME);
+}
+
+static K_WORK_DEFINE(roba_force_ble_name_work, roba_force_ble_name_work_handler);
+
+static int roba_force_ble_name_commit(void) {
+    k_work_submit(&roba_force_ble_name_work);
     return 0;
 }
 
